@@ -1,11 +1,11 @@
-Relatório semanal
+RelatÃ³rio semanal
 
 Relatar o que foi feito:
-Durante esta semana foram feitos 10 Horas de treinamento para absorção de conhecimento para utilização da ferraente AdiantiBuilder (https://adiantibuilder.com.br).
-Foi desenvolvido também o chamado HelloWorld para comprovação de aplicabilidade, usabilidade e conhecimento sobre a ferramenta.
+Durante esta semana foram feitos 10 Horas de treinamento para absorÃ§Ã£o de conhecimento para utilizaÃ§Ã£o da ferramenta AdiantiBuilder (https://adiantibuilder.com.br).
+Foi desenvolvido tambÃ©m o chamado HelloWorld para comprovaÃ§Ã£o de aplicabilidade, usabilidade e conhecimento sobre a ferramenta.
 
 Problemas:
-Sem uma licença de uso não é possivel exportar o código fonte.
+Sem uma licenÃ§a de uso nÃ£o Ã© possivel exportar o cÃ³digo fonte.
 
-Ação tomada:
-E-mail enviado para o professor com o questionamento sobre a possibilidade de conseguir uma licença acadêmica pela FURB.
+AÃ§Ã£o tomada:
+E-mail enviado para o professor com o questionamento sobre a possibilidade de conseguir uma licenÃ§a acadÃªmica pela FURB.
