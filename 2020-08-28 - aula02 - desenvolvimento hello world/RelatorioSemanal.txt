@@ -1,6 +1,11 @@
 Relatório semanal
 
-Relatar o que foi feito:
+2020-08-21- aula01 desenvolvimento do projeto
+O que foi feito:
+No decorrer desta semana foram aplicadas as correções vindas dos avaliadores de TCC1 além das correções pontuadas pela professora Simone para a revalidação do projeto. Dentre as correções, as principais: atualização de referências para referências < 5 anos; reformulação das contribuições dos trabalhos correlatos para a proposta; análise dos correlatos para fundamentações na justificativa.
+
+2020-08-28- aula02 desenvolvimento do projeto
+O que foi feito:
 Durante esta semana foram feitos 10 Horas de treinamento para absorção de conhecimento para utilização da ferramenta AdiantiBuilder (https://adiantibuilder.com.br).
 Foi desenvolvido também o chamado HelloWorld para comprovação de aplicabilidade, usabilidade e conhecimento sobre a ferramenta.
 

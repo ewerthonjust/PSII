@@ -1,11 +1,30 @@
 Relatório semanal
 
-Relatar O QUE FOI FEITO:
--
--
--
+2020-08-21- aula01 desenvolvimento do projeto
+O que foi feito:
+No decorrer desta semana foram aplicadas as correções vindas dos avaliadores de TCC1 além das correções pontuadas pela professora Simone para a revalidação do projeto. Dentre as correções, as principais: atualização de referências para referências < 5 anos; reformulação das contribuições dos trabalhos correlatos para a proposta; análise dos correlatos para fundamentações na justificativa.
 
-Relatar QUEM FOI O RESPONSÁVEL
--
--
--
+2020-08-28- aula02 desenvolvimento do projeto
+O que foi feito:
+Durante esta semana foram feitos 10 Horas de treinamento para absorção de conhecimento para utilização da ferramenta AdiantiBuilder (https://adiantibuilder.com.br).
+Foi desenvolvido também o chamado HelloWorld para comprovação de aplicabilidade, usabilidade e conhecimento sobre a ferramenta.
+
+Problemas:
+Sem uma licença de uso não é possivel exportar o código fonte.
+
+Ação tomada:
+E-mail enviado para o professor com o questionamento sobre a possibilidade de conseguir uma licença acadêmica pela FURB.
+
+2020-09-03- aula03 preparação da proposta comercial
+O que foi feito:
+Desenvolvimento da proposta comercial, desenvolvimento dos casos de uso e inicio do desenvolvimento base da aplicação, compra da licença do AdiantiBuilder.
+
+Problemas:
+Nenhum.
+
+2020-09-11- aula04 preparação da proposta comercial - inicio desenv
+O que foi feito:
+Início do desenvolvimento da base da ferramenta (Telas de login, Dashboards, Etc.), definição do nome e logo da ferramenta e preparação dos slides do Pitch para apresentação para a turma.
+
+Problemas:
+Nenhum.
