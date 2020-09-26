@@ -4,7 +4,7 @@ class QuestionsForm extends TPage
 {
     protected $form;
     private $formFields = [];
-    private static $database = 'devops_assessment';
+    private static $database = 'bdevops';
     private static $activeRecord = 'Questions';
     private static $primaryKey = 'id';
     private static $formName = 'form_Questions';
@@ -26,7 +26,7 @@ class QuestionsForm extends TPage
         $id = new TEntry('id');
         $question = new TEntry('question');
         $descricao = new TEntry('descricao');
-        $Ferramentas_id = new TDBCombo('Ferramentas_id', 'devops_assessment', 'Tools', 'id', '{nome}','nome asc'  );
+        $Ferramentas_id = new TDBCombo('Ferramentas_id', 'bdevops', 'Tools', 'id', '{nome}','nome asc'  );
 
         $question->addValidation("Question", new TRequiredValidator()); 
         $Ferramentas_id->addValidation("Ferramentas id", new TRequiredValidator()); 
@@ -42,9 +42,9 @@ class QuestionsForm extends TPage
         $Ferramentas_id->setSize('100%');
 
         $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', null)],[$id]);
-        $row2 = $this->form->addFields([new TLabel("Question:", '#ff0000', '14px', null)],[$question]);
+        $row2 = $this->form->addFields([new TLabel("Pergunta:", '#ff0000', '14px', null)],[$question]);
         $row3 = $this->form->addFields([new TLabel("Descrição:", null, '14px', null)],[$descricao]);
-        $row4 = $this->form->addFields([new TLabel("Ferramentas id:", '#ff0000', '14px', null)],[$Ferramentas_id]);
+        $row4 = $this->form->addFields([new TLabel("Ferramenta:", '#ff0000', '14px', null)],[$Ferramentas_id]);
 
         // create the form actions
         $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'fas:save #ffffff');
@@ -56,7 +56,7 @@ class QuestionsForm extends TPage
         $container = new TVBox;
         $container->style = 'width: 100%';
         $container->class = 'form-container';
-        // $container->add(new TXMLBreadCrumb('menu.xml', __CLASS__));
+        $container->add(TBreadCrumb::create(["Questionário","Cadastro de Perguntas"]));
         $container->add($this->form);
 
         parent::add($container);

@@ -7,7 +7,7 @@ class QuestionsList extends TPage
     private $pageNavigation;
     private $loaded;
     private $filter_criteria;
-    private static $database = 'devops_assessment';
+    private static $database = 'bdevops';
     private static $activeRecord = 'Questions';
     private static $primaryKey = 'id';
     private static $formName = 'formList_Questions';
@@ -29,7 +29,7 @@ class QuestionsList extends TPage
         $id = new TEntry('id');
         $question = new TEntry('question');
         $descricao = new TEntry('descricao');
-        $Ferramentas_id = new TDBCombo('Ferramentas_id', 'devops_assessment', 'Tools', 'id', '{nome}','nome asc'  );
+        $Ferramentas_id = new TDBCombo('Ferramentas_id', 'bdevops', 'Tools', 'id', '{nome}','nome asc'  );
 
         $question->setMaxLength(200);
         $descricao->setMaxLength(300);
@@ -281,7 +281,7 @@ class QuestionsList extends TPage
     {
         try
         {
-            // open a transaction with database 'devops_assessment'
+            // open a transaction with database 'bdevops'
             TTransaction::open(self::$database);
 
             // creates a repository for Questions

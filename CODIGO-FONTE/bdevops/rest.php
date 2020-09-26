@@ -18,6 +18,8 @@ class AdiantiRestServer
         
         try
         {
+            $headers['Authorization'] = $headers['Authorization'] ?? ($headers['authorization'] ?? null);
+            
             if (empty($headers['Authorization']))
             {
                 throw new Exception( _t('Authorization error') );

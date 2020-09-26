@@ -1,11 +1,51 @@
 Relatório semanal
 
-Relatar O QUE FOI FEITO:
--
--
--
+2020-08-21- aula01 desenvolvimento do projeto
+O que foi feito:
+No decorrer desta semana foram aplicadas as correções vindas dos avaliadores de TCC1 além das correções pontuadas pela professora Simone para a revalidação do projeto. Dentre as correções, as principais: atualização de referências para referências < 5 anos; reformulação das contribuições dos trabalhos correlatos para a proposta; análise dos correlatos para fundamentações na justificativa.
 
-Relatar QUEM FOI O RESPONSÁVEL
--
--
--
+2020-08-28- aula02 desenvolvimento do projeto
+O que foi feito:
+Durante esta semana foram feitos 10 Horas de treinamento para absorção de conhecimento para utilização da ferramenta AdiantiBuilder (https://adiantibuilder.com.br).
+Foi desenvolvido também o chamado HelloWorld para comprovação de aplicabilidade, usabilidade e conhecimento sobre a ferramenta.
+
+Problemas:
+Sem uma licença de uso não é possivel exportar o código fonte.
+
+Ação tomada:
+E-mail enviado para o professor com o questionamento sobre a possibilidade de conseguir uma licença acadêmica pela FURB.
+
+2020-09-04- aula03 preparação da proposta comercial
+O que foi feito:
+Desenvolvimento da proposta comercial, desenvolvimento dos casos de uso e inicio do desenvolvimento base da aplicação, compra da licença do AdiantiBuilder.
+
+Problemas:
+Nenhum.
+
+2020-09-11- aula04 preparação da proposta comercial - inicio desenv
+O que foi feito:
+Início do desenvolvimento da base da ferramenta (Telas de login, Dashboards, Etc.), definição do nome e logo da ferramenta e preparação dos slides do Pitch para apresentação para a turma.
+
+Problemas:
+Nenhum.
+
+2020-09-18- aula05 apresentação do problema (publico)
+O que foi feito:
+No decorrer desta semana foram desenvolvidas as telas de cadastro de usuários, cadastro de ferramentas e cadastro de perguntas, e finalizada a implementação da tela de login possibilitando a autenticação na ferramenta. Preparação do ambiente AWS (ECS) Amazon Linux para deploy da aplicação e disponibilização de acesso via browser à aplicação.
+
+Problemas:
+Enfrentei problemas com a integração do AdiantBuilder e os serviçõs AWS (Firewall), e administração do Banco de dados MySQL no application server preparado.
+
+Ação tomada:
+Busca de auxilio com amigos que estão apicando a mesma solução em seus TCC's.
+
+2020-09-25- aula06 desenvolvimento do projeto
+O que foi feito:
+No decorrer desta semana foi dado inicio a implementação da tela de geração de relatórios. A tela de cadastros de usuários recebeu mais informações como nome, e-mail e organização  para melhor gestão de permissões.
+Foi feita a compra de um dominio na AWS o qual geraria um custo de U$50,00 mensal para cada definição de rotas no DNS. Buscou-se então uma solução mais barata (hostiger.com). Corrigidas as questões administrativad do MySql utilização o RDS da Amazon e também a questão de firewall para deploy da aplicação no ECS, sendo o problema o IP Source do AdiantiBuilder.
+
+Problemas:
+Enfrentando problemas com a listagem de pergutas cadastrada dentro da ferramenta na tela de geração de relatório; Problemas com deploy na Instância EC2, pois mesmo sem nenhuma alteração de banco, após o deploy do código fonte, a aplicação não encontra mais a tabela systemuser, a qual contem doso os usuário cadastrados
+
+Ação tomada:
+Abertura de duvidas no forum do AdiantiBuilder e troca de idéia com amigos referente as solucções do dominio AWS.

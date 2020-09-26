@@ -45,7 +45,7 @@ trait AdiantiMasterDetailTrait
                 $detail_object->fromArray($item);
                 $detail_pkey   = $detail_object->getPrimaryKey();
                 
-                if (is_int($key))
+                if (is_int($key) || preg_match('/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/',$key))
                 { 
                     $detail_object->$detail_pkey = $key;
                 }

@@ -2,8 +2,12 @@
 <menu>
   <menuitem label="Questionário">
     <icon>fas:table fa-fw </icon>
-    <menu>  
-</menu>
+    <menu>
+      <menuitem label="Gerar Relatório">
+        <icon>far:circle fa-fw </icon>
+        <action>ReportsForm#method=onShow</action>
+      </menuitem>
+    </menu>
   </menuitem>
   <menuitem label="Ferramentas">
     <icon>fas:wrench fa-fw </icon>

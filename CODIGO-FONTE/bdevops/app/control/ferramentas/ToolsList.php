@@ -7,7 +7,7 @@ class ToolsList extends TPage
     private $pageNavigation;
     private $loaded;
     private $filter_criteria;
-    private static $database = 'devops_assessment';
+    private static $database = 'bdevops';
     private static $activeRecord = 'Tools';
     private static $primaryKey = 'id';
     private static $formName = 'formList_Tools';
@@ -270,7 +270,7 @@ class ToolsList extends TPage
     {
         try
         {
-            // open a transaction with database 'devops_assessment'
+            // open a transaction with database 'bdevops'
             TTransaction::open(self::$database);
 
             // creates a repository for Tools

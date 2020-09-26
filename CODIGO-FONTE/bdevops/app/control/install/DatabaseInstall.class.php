@@ -66,7 +66,7 @@ class DatabaseInstall extends TPage
             
             $this->form->addContent([$tstep]);
             
-            $database_types = ['mysql'=>'MySql', 'pgsql'=> 'Postgres', 'oracle' => 'Oracle', 'mssql' => 'SQL Server', 'sqlite' => 'SQLite', 'fbird' => 'Firebird'];
+            $database_types = ['mysql'=>'MySql', 'pgsql'=> 'Postgres', 'oracle' => 'Oracle', 'mssql' => 'SQL Server', 'sqlsrv' => 'SQL Server (pdo sqlsrv)', 'sqlite' => 'SQLite', 'fbird' => 'Firebird'];
             
             if(isset($installIni['template_databases']) && $installIni['template_databases'])
             {
@@ -285,7 +285,7 @@ class DatabaseInstall extends TPage
                 {
                     $ini['name'] = $name;
                 }
-                elseif($databaseType == 'mssql')
+                elseif($databaseType == 'mssql' || $databaseType == 'sqlsrv')
                 {
                     $ini['name'] = '';
                 }
@@ -672,7 +672,7 @@ return TConnection::getDatabaseInfo($unit_database);';
                      GRANT ALL PRIVILEGES ON {$name}.* TO '{$user}'@'%' WITH GRANT OPTION;
                     ";
         }
-        elseif($databaseType == 'mssql')
+        elseif($databaseType == 'mssql' || $databaseType == 'sqlsrv')
         {
             $sql  = "CREATE DATABASE {$name};
             
@@ -860,7 +860,7 @@ return TConnection::getDatabaseInfo($unit_database);';
         {
             $sql = "select * from all_indexes where upper(substr(index_name,0,30)) = upper(substr('{$idxName}',0,30))";
         }
-        elseif($databaseType == 'mssql')
+        elseif($databaseType == 'mssql' || $databaseType == 'sqlsrv')
         {
             $sql = "select * from sys.indexes where name = '{$idxName}'";
         }
@@ -901,7 +901,7 @@ return TConnection::getDatabaseInfo($unit_database);';
         {
             $sql = "select * from all_tables where upper(table_name) = upper('{$tableName}')";
         }
-        elseif($databaseType == 'mssql')
+        elseif($databaseType == 'mssql' || $databaseType == 'sqlsrv')
         {
             $sql = "select * from information_schema.tables where table_name = '{$tableName}'";
         }
@@ -939,7 +939,7 @@ return TConnection::getDatabaseInfo($unit_database);';
         {
             $sql = "select * from all_constraints where upper(constraint_name) = upper('{$fkName}')"; 
         }
-        elseif($databaseType == 'mssql')
+        elseif($databaseType == 'mssql' || $databaseType == 'sqlsrv')
         {
             $sql = "select * from sys.foreign_keys where name = upper('{$fkName}')"; 
         }
@@ -972,7 +972,7 @@ return TConnection::getDatabaseInfo($unit_database);';
             
             $result = $conn->query($sql); 
         }
-        elseif($databaseType == 'mssql')
+        elseif($databaseType == 'mssql' || $databaseType == 'sqlsrv')
         {
             $sql = "create login {$user} with password = '{$password}'
                     create user {$user} for login {$user}";
@@ -994,7 +994,7 @@ return TConnection::getDatabaseInfo($unit_database);';
             {
                 $sql = "SELECT * FROM mysql.user WHERE user = '{$user}' "; 
             }
-            elseif($databaseType == 'mssql')
+            elseif($databaseType == 'mssql' || $databaseType == 'sqlsrv')
             {
                 $sql = "select * from sys.sysusers Where name = '{$user}'";
             }
@@ -1083,7 +1083,7 @@ return TConnection::getDatabaseInfo($unit_database);';
                     return false;
                 }
             }
-            elseif ($ini['type'] == 'mssql')
+            elseif ($ini['type'] == 'mssql' || $ini['type' == 'sqlsrv'])
             {
                 $name = $ini['name'];
                 $ini['name'] = '';
@@ -1140,7 +1140,7 @@ return TConnection::getDatabaseInfo($unit_database);';
             elseif($ini['type'] == 'mysql'){
                 $ini['name'] = '';
             }
-            elseif($ini['type'] == 'mssql'){
+            elseif($ini['type'] == 'mssql' || $ini['type'] == 'sqlsrv'){
                 $ini['name'] = '';
             }
             elseif($ini['type'] == 'sqlite'){

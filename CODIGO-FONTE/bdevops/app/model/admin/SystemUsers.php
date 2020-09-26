@@ -28,6 +28,7 @@ class SystemUsers extends TRecord
         parent::addAttribute('frontpage_id');
         parent::addAttribute('system_unit_id');
         parent::addAttribute('active');
+        parent::addAttribute('Phone');
     
     }
 
