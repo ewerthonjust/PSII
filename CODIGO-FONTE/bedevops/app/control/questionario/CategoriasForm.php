@@ -34,8 +34,8 @@ class CategoriasForm extends TPage
         $id->setSize(100);
         $categoria->setSize('100%');
 
-        $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', null)],[$id]);
-        $row2 = $this->form->addFields([new TLabel("Categoria:", '#ff0000', '14px', null)],[$categoria]);
+        $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id]);
+        $row2 = $this->form->addFields([new TLabel("Nome: *", '#030303', '14px', null)],[$categoria]);
 
         // create the form actions
         $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'fas:save #ffffff');

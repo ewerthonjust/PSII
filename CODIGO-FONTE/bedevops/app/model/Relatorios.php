@@ -17,7 +17,9 @@ class Relatorios extends TRecord
     {
         parent::__construct($id, $callObjectLoad);
         parent::addAttribute('user_id');
+        parent::addAttribute('titulo');
         parent::addAttribute('descricao');
+        parent::addAttribute('criacao');
             
     }
 

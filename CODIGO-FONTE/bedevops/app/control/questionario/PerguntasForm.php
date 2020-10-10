@@ -45,10 +45,10 @@ class PerguntasForm extends TPage
         $categorias_id->setSize('100%');
 
         $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', null)],[$id]);
-        $row2 = $this->form->addFields([new TLabel("Question:", '#ff0000', '14px', null)],[$pergunta]);
+        $row2 = $this->form->addFields([new TLabel("Pergunta: *", '#000000', '14px', null)],[$pergunta]);
         $row3 = $this->form->addFields([new TLabel("Descrição:", null, '14px', null)],[$descricao]);
-        $row4 = $this->form->addFields([new TLabel("Ferramenta id:", '#ff0000', '14px', null)],[$ferramenta_id]);
-        $row5 = $this->form->addFields([new TLabel("Categorias id:", '#ff0000', '14px', null)],[$categorias_id]);
+        $row4 = $this->form->addFields([new TLabel("Ferramenta: *", '#010101', '14px', null)],[$ferramenta_id]);
+        $row5 = $this->form->addFields([new TLabel("Categoria: *", '#000000', '14px', null)],[$categorias_id]);
 
         // create the form actions
         $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'fas:save #ffffff');

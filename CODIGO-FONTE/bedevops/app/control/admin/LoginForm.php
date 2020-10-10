@@ -81,12 +81,12 @@ class LoginForm extends TPage
         $btn->style = 'height: 40px;width: 90%;display: block;margin: auto;font-size:17px;';
         
         $wrapper = new TElement('div');
-        $wrapper->style = 'margin:auto; margin-top:100px;max-width:460px;';
+        $wrapper->style = 'margin:50px; margin-top:30px;max-width:460px;';
         $wrapper->id = 'login-wrapper';
         
         $h3 = new TElement('h1');
-        $h3->style = 'text-align:center;';
-        $h3->add('B:DevOps');
+        $h3->style = 'text-align:center; color:white; font-weight:bold;';
+        $h3->add('BeDevOps');
         
         $wrapper->add($h3);
         $wrapper->add($this->form);

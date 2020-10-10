@@ -24,7 +24,7 @@ class CategoriasList extends TPage
         $this->form = new BootstrapFormBuilder(self::$formName);
 
         // define the form title
-        $this->form->setFormTitle("Listagem de categoriass");
+        $this->form->setFormTitle("Listagem de categorias");
 
         $id = new TEntry('id');
         $categoria = new TEntry('categoria');
@@ -33,7 +33,7 @@ class CategoriasList extends TPage
         $id->setSize(100);
         $categoria->setSize('100%');
 
-        $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', null)],[$id]);
+        $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id]);
         $row2 = $this->form->addFields([new TLabel("Categoria:", null, '14px', null)],[$categoria]);
 
         // keep the form filled during navigation with session data
@@ -55,7 +55,7 @@ class CategoriasList extends TPage
         $this->datagrid->style = 'width: 100%';
         $this->datagrid->setHeight(320);
 
-        $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
+        $column_id = new TDataGridColumn('id', "Código", 'center' , '70.1167px');
         $column_categoria = new TDataGridColumn('categoria', "Categoria", 'left');
 
         $order_id = new TAction(array($this, 'onReload'));
@@ -100,7 +100,7 @@ class CategoriasList extends TPage
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';
-        $container->add(TBreadCrumb::create(["Questionário","Categorias"]));
+        $container->add(TBreadCrumb::create(["Questionário","Consultar Categorias"]));
         $container->add($this->form);
         $container->add($panel);
 

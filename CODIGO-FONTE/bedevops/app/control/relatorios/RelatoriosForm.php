@@ -20,59 +20,56 @@ class RelatoriosForm extends TPage
         // creates the form
         $this->form = new BootstrapFormBuilder(self::$formName);
         // define the form title
-        $this->form->setFormTitle("Relatório");
+        $this->form->setFormTitle("Cadastro de relatorios");
 
 
         $id = new TEntry('id');
-        $user_id = new TDBCombo('user_id', 'bedevops', 'SystemUsers', 'id', '{name}','id asc'  );
+        $user_id = new TDBCombo('user_id', 'bedevops', 'SystemUsers', 'id', '{name}','name asc'  );
+        $titulo = new TEntry('titulo');
         $descricao = new TEntry('descricao');
+        $criacao = new TDateTime('criacao');
 
-        $descricao->addValidation("Descricao", new TRequiredValidator()); 
+        $user_id->addValidation("Usuário", new TRequiredValidator()); 
+        $titulo->addValidation("Título", new TRequiredValidator()); 
+        $descricao->addValidation("Descrição", new TRequiredValidator()); 
+        $criacao->addValidation("Data da criação", new TRequiredValidator()); 
 
         $user_id->setDefaultOption(false);
+        $criacao->setMask('dd/mm/yyyy hh:ii');
+        $criacao->setDatabaseMask('yyyy-mm-dd hh:ii');
+
+        $titulo->setMaxLength(100);
         $descricao->setMaxLength(200);
 
         $id->setEditable(false);
         $user_id->setEditable(false);
+        $criacao->setEditable(false);
 
         $id->setSize(100);
-        $user_id->setSize('50%');
+        $criacao->setSize(150);
+        $user_id->setSize('60%');
+        $titulo->setSize('100%');
         $descricao->setSize('100%');
 
         TTransaction::open('permission');
         $user = new SystemUsers(TSession::getValue('userid'));
-        $user_id->setValue("$user->id");
         TTransaction::close();
-        $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id]);
-        $row2 = $this->form->addFields([new TLabel("Usuário:", '#000000', '14px', null)],[$user_id]);
-        $row3 = $this->form->addFields([new TLabel("Descricão:", '#ff0000', '14px', null)],[$descricao]);
 
-        TTransaction::open('bedevops');
-        $data = Perguntas::orderBy('id')->load();
-        foreach ($data as &$value) {
-            $row = $this->form->addContent([new TFormSeparator("", '#333333', '18', '#a3a0a0')]);
-            $id = $value->id;
-            $report_items_reports_resposta = new TRadioGroup("report_items_reports_resposta_$id");
-            $report_items_reports_resposta->addItems(['1'=>'Sim','2'=>'Não']);
-            $report_items_reports_resposta->setLayout('horizontal');
-            $report_items_reports_resposta->setBooleanMode();
-            $report_items_reports_resposta->setUseButton();
-            $report_items_reports_resposta->addValidation('Campo', new TRequiredValidator);
-            $report_items_reports_resposta->setSize(80);
-            #$report_items_reports_resposta->addValidation("resposta da pergunta $id", new TRequiredValidator());
+        $object = new stdClass();
+        $object->user_id = $user->id;
+        TForm::sendData(self::$formName, $object);
 
-            $report_items_reports_descricao = new TEntry("report_items_reports_descricao_$id");
-            $report_items_reports_descricao->setSize('100%');
-            $report_items_reports_descricao->placeholder = "Comentários";
-            $report_items_reports_descricao->setMaxLength(200);
-            $row = $this->form->addFields([new TLabel("$value->id - $value->pergunta", 500, '14px', null)],
-                                                [$report_items_reports_resposta],
-                                                    [$report_items_reports_descricao]);
-            $row->layout = [' col-xs-12 col-sm-12 col-lg-12 col-md-12',' col-xs-3 col-sm-3 col-lg-3 col-md-3',' col-xs-9 col-sm-9 col-lg-9 col-md-9'];
-        }
+        $object = new stdClass();
+        $object->criacao = date("d-m-Y H:i");
+        TForm::sendData(self::$formName, $object);
+
+        $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id,new TLabel("Usuário:", '#000000', '14px', null),$user_id]);
+        $row2 = $this->form->addFields([new TLabel("Título: *", '#000000', '14px', null)],[$titulo]);
+        $row3 = $this->form->addFields([new TLabel("Descrição: *", '#000000', '14px', null)],[$descricao]);
+        $row4 = $this->form->addFields([new TLabel("Data da criação:", '#000000', '14px', null)],[$criacao]);
 
         // create the form actions
-        $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'fas:save #ffffff');
+        $btn_onsave = $this->form->addAction("Prosseguir", new TAction([$this, 'onSave']), 'fas:angle-double-right #ffffff');
         $btn_onsave->addStyleClass('btn-primary'); 
 
         $btn_onclear = $this->form->addAction("Limpar formulário", new TAction([$this, 'onClear']), 'fas:eraser #dd5a43');
@@ -121,8 +118,13 @@ class RelatoriosForm extends TPage
             // To define an action to be executed on the message close event:
             $messageAction = new TAction(['className', 'methodName']);
             **/
+/*
 
             new TMessage('info', "Registro salvo", $messageAction); 
+
+*/
+            $pageParam = ['ReportId' => $data->id]; // ex.: = ['key' => 10]
+            TApplication::loadPage('ItensRelatorioForm', 'onshow', $pageParam);
 
         }
         catch (Exception $e) // in case of exception

@@ -39,9 +39,9 @@ class FerramentasForm extends TPage
         $nome->setSize('100%');
         $descricao->setSize('100%');
 
-        $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', null)],[$id]);
-        $row2 = $this->form->addFields([new TLabel("Nome:", '#ff0000', '14px', null)],[$nome]);
-        $row3 = $this->form->addFields([new TLabel("Descrição:", '#ff0000', '14px', null)],[$descricao]);
+        $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id]);
+        $row2 = $this->form->addFields([new TLabel("Nome: *", '#000000', '14px', null)],[$nome]);
+        $row3 = $this->form->addFields([new TLabel("Descrição: *", '#000000', '14px', null)],[$descricao]);
 
         // create the form actions
         $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'fas:save #ffffff');

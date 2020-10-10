@@ -24,7 +24,7 @@ class FerramentasList extends TPage
         $this->form = new BootstrapFormBuilder(self::$formName);
 
         // define the form title
-        $this->form->setFormTitle("Listagem de ferramentass");
+        $this->form->setFormTitle("Listagem de ferramentas");
 
         $id = new TEntry('id');
         $nome = new TEntry('nome');
@@ -37,7 +37,7 @@ class FerramentasList extends TPage
         $nome->setSize('100%');
         $descricao->setSize('100%');
 
-        $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', null)],[$id]);
+        $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id]);
         $row2 = $this->form->addFields([new TLabel("Nome:", null, '14px', null)],[$nome]);
         $row3 = $this->form->addFields([new TLabel("Descrição:", null, '14px', null)],[$descricao]);
 
@@ -60,7 +60,7 @@ class FerramentasList extends TPage
         $this->datagrid->style = 'width: 100%';
         $this->datagrid->setHeight(320);
 
-        $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
+        $column_id = new TDataGridColumn('id', "Código", 'center' , '70.1167px');
         $column_nome = new TDataGridColumn('nome', "Nome", 'left');
         $column_descricao = new TDataGridColumn('descricao', "Descrição", 'left');
 
@@ -107,7 +107,7 @@ class FerramentasList extends TPage
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';
-        $container->add(TBreadCrumb::create(["Ferramentas","Ferramentas"]));
+        $container->add(TBreadCrumb::create(["Ferramentas","Consultar Ferramentas"]));
         $container->add($this->form);
         $container->add($panel);
 

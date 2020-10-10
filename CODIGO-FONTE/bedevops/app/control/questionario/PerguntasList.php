@@ -41,11 +41,11 @@ class PerguntasList extends TPage
         $ferramenta_id->setSize('100%');
         $categorias_id->setSize('100%');
 
-        $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', null)],[$id]);
-        $row2 = $this->form->addFields([new TLabel("Question:", null, '14px', null)],[$pergunta]);
+        $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id]);
+        $row2 = $this->form->addFields([new TLabel("Pergunta:", null, '14px', null)],[$pergunta]);
         $row3 = $this->form->addFields([new TLabel("Descrição:", null, '14px', null)],[$descricao]);
-        $row4 = $this->form->addFields([new TLabel("Ferramenta id:", null, '14px', null)],[$ferramenta_id]);
-        $row5 = $this->form->addFields([new TLabel("Categorias id:", null, '14px', null)],[$categorias_id]);
+        $row4 = $this->form->addFields([new TLabel("Ferramenta:", null, '14px', null)],[$ferramenta_id]);
+        $row5 = $this->form->addFields([new TLabel("Categoria:", null, '14px', null)],[$categorias_id]);
 
         // keep the form filled during navigation with session data
         $this->form->setData( TSession::getValue(__CLASS__.'_filter_data') );
@@ -66,11 +66,11 @@ class PerguntasList extends TPage
         $this->datagrid->style = 'width: 100%';
         $this->datagrid->setHeight(320);
 
-        $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
-        $column_pergunta = new TDataGridColumn('pergunta', "Question", 'left');
+        $column_id = new TDataGridColumn('id', "Código", 'center' , '70.1167px');
+        $column_pergunta = new TDataGridColumn('pergunta', "Pergunta", 'left');
         $column_descricao = new TDataGridColumn('descricao', "Descrição", 'left');
-        $column_ferramenta_nome = new TDataGridColumn('ferramenta->nome', "Ferramenta id", 'left');
-        $column_categorias_categoria = new TDataGridColumn('categorias->categoria', "Categorias id", 'left');
+        $column_ferramenta_nome = new TDataGridColumn('ferramenta->nome', "Ferramenta", 'left');
+        $column_categorias_categoria = new TDataGridColumn('categorias->categoria', "Categoria", 'left');
 
         $order_id = new TAction(array($this, 'onReload'));
         $order_id->setParameter('order', 'id');
@@ -117,7 +117,7 @@ class PerguntasList extends TPage
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';
-        $container->add(TBreadCrumb::create(["Questionário","Perguntas"]));
+        $container->add(TBreadCrumb::create(["Questionário","Consultar Perguntas"]));
         $container->add($this->form);
         $container->add($panel);
 

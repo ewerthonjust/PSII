@@ -19,7 +19,7 @@ class ItensRelatorio extends TRecord
         parent::__construct($id, $callObjectLoad);
         parent::addAttribute('pergunta_id');
         parent::addAttribute('resposta');
-        parent::addAttribute('comentarios');
+        parent::addAttribute('comentario');
         parent::addAttribute('relatorio_id');
             
     }

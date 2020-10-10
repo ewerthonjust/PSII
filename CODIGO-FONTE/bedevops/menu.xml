@@ -3,16 +3,16 @@
   <menuitem label="Relatórios">
     <icon>fas:chart-bar fa-fw </icon>
     <menu>
-      <menuitem label="Relatorios">
-        <icon>far:circle fa-fw </icon>
-        <action>RelatoriosList#method=onShow</action>
+      <menuitem label="Cadastro de relatorios">
+        <icon>fas:gavel fa-fw </icon>
+        <action>RelatoriosForm#method=onShow</action>
       </menuitem>
     </menu>
   </menuitem>
   <menuitem label="Ferramentas">
     <icon>fas:wrench fa-fw </icon>
     <menu>
-      <menuitem label="Ferramentas">
+      <menuitem label="Consultar Ferramentas">
         <icon>far:circle fa-fw </icon>
         <action>FerramentasList#method=onShow</action>
       </menuitem>
@@ -21,11 +21,11 @@
   <menuitem label="Questionário">
     <icon>fas:table fa-fw </icon>
     <menu>
-      <menuitem label="Categorias">
+      <menuitem label="Consultar Categorias">
         <icon>far:circle fa-fw </icon>
         <action>CategoriasList#method=onShow</action>
       </menuitem>
-      <menuitem label="Perguntas">
+      <menuitem label="Consultar Perguntas">
         <icon>far:circle fa-fw </icon>
         <action>PerguntasList#method=onShow</action>
       </menuitem>

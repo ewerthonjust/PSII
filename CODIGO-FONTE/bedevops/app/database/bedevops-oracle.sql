@@ -13,7 +13,7 @@ CREATE TABLE itens_relatorio(
       id number(10)    NOT NULL , 
       pergunta_id number(10)    NOT NULL , 
       resposta char(1)    NOT NULL , 
-      comentarios varchar  (200)   , 
+      comentario CLOB    NOT NULL , 
       relatorio_id number(10)    NOT NULL , 
  PRIMARY KEY (id)) ; 
 
@@ -28,7 +28,9 @@ CREATE TABLE perguntas(
 CREATE TABLE relatorios( 
       id number(10)    NOT NULL , 
       user_id number(10)    NOT NULL , 
-      descricao varchar  (200)    NOT NULL , 
+      titulo varchar  (100)    NOT NULL , 
+      descricao CLOB    NOT NULL , 
+      criacao timestamp(0)    NOT NULL , 
  PRIMARY KEY (id)) ; 
 
 CREATE TABLE system_group( 
@@ -93,6 +95,7 @@ CREATE TABLE system_user_unit(
  ALTER TABLE categorias ADD UNIQUE (categoria);
  ALTER TABLE ferramentas ADD UNIQUE (nome);
  ALTER TABLE perguntas ADD UNIQUE (pergunta);
+ ALTER TABLE relatorios ADD UNIQUE (titulo);
   
  ALTER TABLE itens_relatorio ADD CONSTRAINT fk_report_answer_item_1 FOREIGN KEY (pergunta_id) references perguntas(id); 
 ALTER TABLE itens_relatorio ADD CONSTRAINT fk_report_answer_item_2 FOREIGN KEY (relatorio_id) references relatorios(id); 
