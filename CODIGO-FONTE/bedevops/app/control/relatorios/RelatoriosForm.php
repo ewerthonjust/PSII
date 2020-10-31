@@ -5,9 +5,9 @@ class RelatoriosForm extends TPage
     protected $form;
     private $formFields = [];
     private static $database = 'bedevops';
-    private static $activeRecord = 'Relatorios';
+    private static $activeRecord = 'Relatorio';
     private static $primaryKey = 'id';
-    private static $formName = 'form_Relatorios';
+    private static $formName = 'form_Relatorio';
 
     /**
      * Form constructor
@@ -101,7 +101,7 @@ class RelatoriosForm extends TPage
 
             $this->form->validate(); // validate form data
 
-            $object = new Relatorios(); // create an empty object 
+            $object = new Relatorio(); // create an empty object 
 
             $data = $this->form->getData(); // get form data as array
             $object->fromArray( (array) $data); // load the object with data
@@ -146,7 +146,7 @@ class RelatoriosForm extends TPage
                 $key = $param['key'];  // get the parameter $key
                 TTransaction::open(self::$database); // open a transaction
 
-                $object = new Relatorios($key); // instantiates the Active Record 
+                $object = new Relatorio($key); // instantiates the Active Record 
 
                 $this->form->setData($object); // fill the form 
 

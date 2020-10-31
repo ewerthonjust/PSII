@@ -1,24 +1,24 @@
-INSERT INTO categorias (id,categoria) VALUES (1,'Delivery'); 
+INSERT INTO categoria (id,categoria) VALUES (1,'Delivery'); 
 
-INSERT INTO categorias (id,categoria) VALUES (2,'Deployment'); 
+INSERT INTO categoria (id,categoria) VALUES (2,'Deployment'); 
 
-INSERT INTO categorias (id,categoria) VALUES (3,'Operation'); 
+INSERT INTO categoria (id,categoria) VALUES (3,'Operation'); 
 
-INSERT INTO ferramentas (id,nome,descricao) VALUES (1,'Rundeck','Ferramenta para automatização de Deployments'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (1,'Rundeck','Ferramenta para automatização de Deployments'); 
 
-INSERT INTO ferramentas (id,nome,descricao) VALUES (2,'Jenkins','Ferramenta para automatização de Builds'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (2,'Jenkins','Ferramenta para automatização de Builds'); 
 
-INSERT INTO ferramentas (id,nome,descricao) VALUES (3,'Ansible','Framework em YAML para automatização de processos'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (3,'Ansible','Framework em YAML para automatização de processos'); 
 
-INSERT INTO ferramentas (id,nome,descricao) VALUES (4,'Puppet','Ferramenta para automatização da gestão de configuração'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (4,'Puppet','Ferramenta para automatização da gestão de configuração'); 
 
-INSERT INTO perguntas (id,pergunta,descricao,ferramenta_id,categorias_id) VALUES (1,'São realizados deployments por meio de uma interface gráfica com procedimentos padronizados?','',1,2); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (1,'São realizados deployments por meio de uma interface gráfica com procedimentos padronizados?','',1,2); 
 
-INSERT INTO perguntas (id,pergunta,descricao,ferramenta_id,categorias_id) VALUES (2,'São realizados builds regulares por meio de uma interface gráfica?','',2,1); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (2,'São realizados builds regulares por meio de uma interface gráfica?','',2,1); 
 
-INSERT INTO perguntas (id,pergunta,descricao,ferramenta_id,categorias_id) VALUES (3,'São utilizadas ferramentas para padronização de processos via script?','',3,3); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (3,'São utilizadas ferramentas para padronização de processos via script?','',3,3); 
 
-INSERT INTO perguntas (id,pergunta,descricao,ferramenta_id,categorias_id) VALUES (4,'A gestão da configuração é realizada de uma forma automatizada?','',4,3); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (4,'A gestão da configuração é realizada de uma forma automatizada?','',4,3); 
 
 INSERT INTO system_group (id,name) VALUES (1,'Admin'); 
 

@@ -86,13 +86,13 @@ class SystemUsers extends TRecord
     }
 
     /**
-     * Method getRelatorioss
+     * Method getRelatorios
      */
-    public function getRelatorioss()
+    public function getRelatorios()
     {
         $criteria = new TCriteria;
         $criteria->add(new TFilter('user_id', '=', $this->id));
-        return Relatorios::getObjects( $criteria );
+        return Relatorio::getObjects( $criteria );
     }
 
     /**

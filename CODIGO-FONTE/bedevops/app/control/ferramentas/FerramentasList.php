@@ -8,9 +8,9 @@ class FerramentasList extends TPage
     private $loaded;
     private $filter_criteria;
     private static $database = 'bedevops';
-    private static $activeRecord = 'Ferramentas';
+    private static $activeRecord = 'Ferramenta';
     private static $primaryKey = 'id';
-    private static $formName = 'formList_Ferramentas';
+    private static $formName = 'formList_Ferramenta';
     private $showMethods = ['onReload', 'onSearch'];
 
     /**
@@ -127,7 +127,7 @@ class FerramentasList extends TPage
                 TTransaction::open(self::$database);
 
                 // instantiates object
-                $object = new Ferramentas($key, FALSE); 
+                $object = new Ferramenta($key, FALSE); 
 
                 // deletes the object from the database
                 $object->delete();
@@ -273,7 +273,7 @@ class FerramentasList extends TPage
             // open a transaction with database 'bedevops'
             TTransaction::open(self::$database);
 
-            // creates a repository for Ferramentas
+            // creates a repository for Ferramenta
             $repository = new TRepository(self::$activeRecord);
             $limit = 20;
 

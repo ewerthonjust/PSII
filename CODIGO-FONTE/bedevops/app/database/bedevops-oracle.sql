@@ -1,15 +1,15 @@
-CREATE TABLE categorias( 
+CREATE TABLE categoria( 
       id number(10)    NOT NULL , 
       categoria varchar  (20)    NOT NULL , 
  PRIMARY KEY (id)) ; 
 
-CREATE TABLE ferramentas( 
+CREATE TABLE ferramenta( 
       id number(10)    NOT NULL , 
       nome varchar  (50)    NOT NULL , 
       descricao varchar  (300)    NOT NULL , 
  PRIMARY KEY (id)) ; 
 
-CREATE TABLE itens_relatorio( 
+CREATE TABLE item_relatorio( 
       id number(10)    NOT NULL , 
       pergunta_id number(10)    NOT NULL , 
       resposta char(1)    NOT NULL , 
@@ -17,20 +17,27 @@ CREATE TABLE itens_relatorio(
       relatorio_id number(10)    NOT NULL , 
  PRIMARY KEY (id)) ; 
 
-CREATE TABLE perguntas( 
+CREATE TABLE pergunta( 
       id number(10)    NOT NULL , 
       pergunta varchar  (200)    NOT NULL , 
       descricao varchar  (300)   , 
       ferramenta_id number(10)    NOT NULL , 
-      categorias_id number(10)    NOT NULL , 
+      categoria_id number(10)    NOT NULL , 
  PRIMARY KEY (id)) ; 
 
-CREATE TABLE relatorios( 
+CREATE TABLE relatorio( 
       id number(10)    NOT NULL , 
       user_id number(10)    NOT NULL , 
       titulo varchar  (100)    NOT NULL , 
       descricao CLOB    NOT NULL , 
       criacao timestamp(0)    NOT NULL , 
+ PRIMARY KEY (id)) ; 
+
+CREATE TABLE resultado( 
+      id number(10)    NOT NULL , 
+      categoria_id number(10)    NOT NULL , 
+      relatorio_id number(10)    NOT NULL , 
+      valor binary_double    NOT NULL , 
  PRIMARY KEY (id)) ; 
 
 CREATE TABLE system_group( 
@@ -92,16 +99,18 @@ CREATE TABLE system_user_unit(
  PRIMARY KEY (id)) ; 
 
  
- ALTER TABLE categorias ADD UNIQUE (categoria);
- ALTER TABLE ferramentas ADD UNIQUE (nome);
- ALTER TABLE perguntas ADD UNIQUE (pergunta);
- ALTER TABLE relatorios ADD UNIQUE (titulo);
+ ALTER TABLE categoria ADD UNIQUE (categoria);
+ ALTER TABLE ferramenta ADD UNIQUE (nome);
+ ALTER TABLE pergunta ADD UNIQUE (pergunta);
+ ALTER TABLE relatorio ADD UNIQUE (titulo);
   
- ALTER TABLE itens_relatorio ADD CONSTRAINT fk_report_answer_item_1 FOREIGN KEY (pergunta_id) references perguntas(id); 
-ALTER TABLE itens_relatorio ADD CONSTRAINT fk_report_answer_item_2 FOREIGN KEY (relatorio_id) references relatorios(id); 
-ALTER TABLE perguntas ADD CONSTRAINT fk_Questions_1 FOREIGN KEY (ferramenta_id) references ferramentas(id); 
-ALTER TABLE perguntas ADD CONSTRAINT fk_perguntas_2 FOREIGN KEY (categorias_id) references categorias(id); 
-ALTER TABLE relatorios ADD CONSTRAINT fk_reports_1 FOREIGN KEY (user_id) references system_users(id); 
+ ALTER TABLE item_relatorio ADD CONSTRAINT fk_report_answer_item_1 FOREIGN KEY (pergunta_id) references pergunta(id); 
+ALTER TABLE item_relatorio ADD CONSTRAINT fk_report_answer_item_2 FOREIGN KEY (relatorio_id) references relatorio(id); 
+ALTER TABLE pergunta ADD CONSTRAINT fk_Questions_1 FOREIGN KEY (ferramenta_id) references ferramenta(id); 
+ALTER TABLE pergunta ADD CONSTRAINT fk_perguntas_2 FOREIGN KEY (categoria_id) references categoria(id); 
+ALTER TABLE relatorio ADD CONSTRAINT fk_reports_1 FOREIGN KEY (user_id) references system_users(id); 
+ALTER TABLE resultado ADD CONSTRAINT fk_resultados_1 FOREIGN KEY (categoria_id) references categoria(id); 
+ALTER TABLE resultado ADD CONSTRAINT fk_resultados_2 FOREIGN KEY (relatorio_id) references relatorio(id); 
 ALTER TABLE system_group_program ADD CONSTRAINT fk_system_group_program_1 FOREIGN KEY (system_program_id) references system_program(id); 
 ALTER TABLE system_group_program ADD CONSTRAINT fk_system_group_program_2 FOREIGN KEY (system_group_id) references system_group(id); 
 ALTER TABLE system_user_group ADD CONSTRAINT fk_system_user_group_1 FOREIGN KEY (system_group_id) references system_group(id); 
@@ -112,11 +121,11 @@ ALTER TABLE system_users ADD CONSTRAINT fk_system_user_2 FOREIGN KEY (frontpage_
 ALTER TABLE system_users ADD CONSTRAINT fk_system_user_1 FOREIGN KEY (system_unit_id) references system_unit(id); 
 ALTER TABLE system_user_unit ADD CONSTRAINT fk_system_user_unit_1 FOREIGN KEY (system_user_id) references system_users(id); 
 ALTER TABLE system_user_unit ADD CONSTRAINT fk_system_user_unit_2 FOREIGN KEY (system_unit_id) references system_unit(id); 
- CREATE SEQUENCE categorias_id_seq START WITH 1 INCREMENT BY 1; 
+ CREATE SEQUENCE categoria_id_seq START WITH 1 INCREMENT BY 1; 
 
-CREATE OR REPLACE TRIGGER categorias_id_seq_tr 
+CREATE OR REPLACE TRIGGER categoria_id_seq_tr 
 
-BEFORE INSERT ON categorias FOR EACH ROW 
+BEFORE INSERT ON categoria FOR EACH ROW 
 
 WHEN 
 
@@ -124,14 +133,14 @@ WHEN
 
 BEGIN 
 
-SELECT categorias_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
+SELECT categoria_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
 
 END;
-CREATE SEQUENCE ferramentas_id_seq START WITH 1 INCREMENT BY 1; 
+CREATE SEQUENCE ferramenta_id_seq START WITH 1 INCREMENT BY 1; 
 
-CREATE OR REPLACE TRIGGER ferramentas_id_seq_tr 
+CREATE OR REPLACE TRIGGER ferramenta_id_seq_tr 
 
-BEFORE INSERT ON ferramentas FOR EACH ROW 
+BEFORE INSERT ON ferramenta FOR EACH ROW 
 
 WHEN 
 
@@ -139,14 +148,14 @@ WHEN
 
 BEGIN 
 
-SELECT ferramentas_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
+SELECT ferramenta_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
 
 END;
-CREATE SEQUENCE itens_relatorio_id_seq START WITH 1 INCREMENT BY 1; 
+CREATE SEQUENCE item_relatorio_id_seq START WITH 1 INCREMENT BY 1; 
 
-CREATE OR REPLACE TRIGGER itens_relatorio_id_seq_tr 
+CREATE OR REPLACE TRIGGER item_relatorio_id_seq_tr 
 
-BEFORE INSERT ON itens_relatorio FOR EACH ROW 
+BEFORE INSERT ON item_relatorio FOR EACH ROW 
 
 WHEN 
 
@@ -154,14 +163,14 @@ WHEN
 
 BEGIN 
 
-SELECT itens_relatorio_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
+SELECT item_relatorio_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
 
 END;
-CREATE SEQUENCE perguntas_id_seq START WITH 1 INCREMENT BY 1; 
+CREATE SEQUENCE pergunta_id_seq START WITH 1 INCREMENT BY 1; 
 
-CREATE OR REPLACE TRIGGER perguntas_id_seq_tr 
+CREATE OR REPLACE TRIGGER pergunta_id_seq_tr 
 
-BEFORE INSERT ON perguntas FOR EACH ROW 
+BEFORE INSERT ON pergunta FOR EACH ROW 
 
 WHEN 
 
@@ -169,14 +178,14 @@ WHEN
 
 BEGIN 
 
-SELECT perguntas_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
+SELECT pergunta_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
 
 END;
-CREATE SEQUENCE relatorios_id_seq START WITH 1 INCREMENT BY 1; 
+CREATE SEQUENCE relatorio_id_seq START WITH 1 INCREMENT BY 1; 
 
-CREATE OR REPLACE TRIGGER relatorios_id_seq_tr 
+CREATE OR REPLACE TRIGGER relatorio_id_seq_tr 
 
-BEFORE INSERT ON relatorios FOR EACH ROW 
+BEFORE INSERT ON relatorio FOR EACH ROW 
 
 WHEN 
 
@@ -184,7 +193,22 @@ WHEN
 
 BEGIN 
 
-SELECT relatorios_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
+SELECT relatorio_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
+
+END;
+CREATE SEQUENCE resultado_id_seq START WITH 1 INCREMENT BY 1; 
+
+CREATE OR REPLACE TRIGGER resultado_id_seq_tr 
+
+BEFORE INSERT ON resultado FOR EACH ROW 
+
+WHEN 
+
+(NEW.id IS NULL) 
+
+BEGIN 
+
+SELECT resultado_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
 
 END;
  

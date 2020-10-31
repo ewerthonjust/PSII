@@ -8,9 +8,9 @@ class CategoriasList extends TPage
     private $loaded;
     private $filter_criteria;
     private static $database = 'bedevops';
-    private static $activeRecord = 'Categorias';
+    private static $activeRecord = 'Categoria';
     private static $primaryKey = 'id';
-    private static $formName = 'formList_Categorias';
+    private static $formName = 'formList_Categoria';
     private $showMethods = ['onReload', 'onSearch'];
 
     /**
@@ -120,7 +120,7 @@ class CategoriasList extends TPage
                 TTransaction::open(self::$database);
 
                 // instantiates object
-                $object = new Categorias($key, FALSE); 
+                $object = new Categoria($key, FALSE); 
 
                 // deletes the object from the database
                 $object->delete();
@@ -260,7 +260,7 @@ class CategoriasList extends TPage
             // open a transaction with database 'bedevops'
             TTransaction::open(self::$database);
 
-            // creates a repository for Categorias
+            // creates a repository for Categoria
             $repository = new TRepository(self::$activeRecord);
             $limit = 20;
 

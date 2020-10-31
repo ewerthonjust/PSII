@@ -3,7 +3,7 @@
 class RelatoriosDocument extends TPage
 {
     private static $database = 'bedevops';
-    private static $activeRecord = 'Relatorios';
+    private static $activeRecord = 'Relatorio';
     private static $primaryKey = 'id';
     private static $htmlFile = 'app/documents/RelatoriosDocumentTemplate.html';
 
@@ -28,6 +28,15 @@ class RelatoriosDocument extends TPage
             $html = new AdiantiHTMLDocumentParser(self::$htmlFile);
             $html->setMaster($object);
 
+            $objectsResultado_relatorio_id = Resultado::where('relatorio_id', '=', $param['key'])->load();
+            $html->setDetail('Resultado.relatorio_id', $objectsResultado_relatorio_id);
+            $objectsItemRelatorio_relatorio_id = ItemRelatorio::where('relatorio_id', '=', $param['key'])->load();
+            $html->setDetail('ItemRelatorio.relatorio_id', $objectsItemRelatorio_relatorio_id);
+
+            $objectsItemRelatorio_relatorio_id = ItemRelatorio::where('relatorio_id', '=', $param['key'])
+                     ->where('resposta', '=', '2')->load();
+            $html->setDetail('ItemRelatorio.relatorio_id', $objectsItemRelatorio_relatorio_id);
+
             $html->process();
 
             $document = 'tmp/'.uniqid().'.pdf'; 
@@ -37,13 +46,7 @@ class RelatoriosDocument extends TPage
 
             if(empty($param['returnFile']))
             {
-                $window = TWindow::create('PDF', 0.8, 0.8);
-                $object = new TElement('object');
-                $object->data  = "download.php?file={$document}";
-                $object->type  = 'application/pdf';
-                $object->style = "width: 100%; height:calc(100% - 10px)";
-                $window->add($object);
-                $window->show();
+                parent::openFile($document);
 
                 new TMessage('info', _t('Document successfully generated'));    
             }

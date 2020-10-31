@@ -5,9 +5,9 @@ class CategoriasForm extends TPage
     protected $form;
     private $formFields = [];
     private static $database = 'bedevops';
-    private static $activeRecord = 'Categorias';
+    private static $activeRecord = 'Categoria';
     private static $primaryKey = 'id';
-    private static $formName = 'form_Categorias';
+    private static $formName = 'form_Categoria';
 
     /**
      * Form constructor
@@ -70,7 +70,7 @@ class CategoriasForm extends TPage
 
             $this->form->validate(); // validate form data
 
-            $object = new Categorias(); // create an empty object 
+            $object = new Categoria(); // create an empty object 
 
             $data = $this->form->getData(); // get form data as array
             $object->fromArray( (array) $data); // load the object with data
@@ -110,7 +110,7 @@ class CategoriasForm extends TPage
                 $key = $param['key'];  // get the parameter $key
                 TTransaction::open(self::$database); // open a transaction
 
-                $object = new Categorias($key); // instantiates the Active Record 
+                $object = new Categoria($key); // instantiates the Active Record 
 
                 $this->form->setData($object); // fill the form 
 

@@ -5,9 +5,9 @@ class PerguntasForm extends TPage
     protected $form;
     private $formFields = [];
     private static $database = 'bedevops';
-    private static $activeRecord = 'Perguntas';
+    private static $activeRecord = 'Pergunta';
     private static $primaryKey = 'id';
-    private static $formName = 'form_Perguntas';
+    private static $formName = 'form_Pergunta';
 
     /**
      * Form constructor
@@ -26,12 +26,12 @@ class PerguntasForm extends TPage
         $id = new TEntry('id');
         $pergunta = new TEntry('pergunta');
         $descricao = new TEntry('descricao');
-        $ferramenta_id = new TDBCombo('ferramenta_id', 'bedevops', 'Ferramentas', 'id', '{nome}','nome asc'  );
-        $categorias_id = new TDBCombo('categorias_id', 'bedevops', 'Categorias', 'id', '{categoria}','categoria asc'  );
+        $ferramenta_id = new TDBCombo('ferramenta_id', 'bedevops', 'Ferramenta', 'id', '{nome}','nome asc'  );
+        $categoria_id = new TDBCombo('categoria_id', 'bedevops', 'Categoria', 'id', '{categoria}','categoria asc'  );
 
         $pergunta->addValidation("Question", new TRequiredValidator()); 
         $ferramenta_id->addValidation("Ferramenta id", new TRequiredValidator()); 
-        $categorias_id->addValidation("Categorias id", new TRequiredValidator()); 
+        $categoria_id->addValidation("Categorias id", new TRequiredValidator()); 
 
         $id->setEditable(false);
 
@@ -41,14 +41,14 @@ class PerguntasForm extends TPage
         $id->setSize(100);
         $pergunta->setSize('100%');
         $descricao->setSize('100%');
+        $categoria_id->setSize('100%');
         $ferramenta_id->setSize('100%');
-        $categorias_id->setSize('100%');
 
         $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', null)],[$id]);
         $row2 = $this->form->addFields([new TLabel("Pergunta: *", '#000000', '14px', null)],[$pergunta]);
         $row3 = $this->form->addFields([new TLabel("Descrição:", null, '14px', null)],[$descricao]);
         $row4 = $this->form->addFields([new TLabel("Ferramenta: *", '#010101', '14px', null)],[$ferramenta_id]);
-        $row5 = $this->form->addFields([new TLabel("Categoria: *", '#000000', '14px', null)],[$categorias_id]);
+        $row5 = $this->form->addFields([new TLabel("Categoria: *", '#000000', '14px', null)],[$categoria_id]);
 
         // create the form actions
         $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'fas:save #ffffff');
@@ -83,7 +83,7 @@ class PerguntasForm extends TPage
 
             $this->form->validate(); // validate form data
 
-            $object = new Perguntas(); // create an empty object 
+            $object = new Pergunta(); // create an empty object 
 
             $data = $this->form->getData(); // get form data as array
             $object->fromArray( (array) $data); // load the object with data
@@ -123,7 +123,7 @@ class PerguntasForm extends TPage
                 $key = $param['key'];  // get the parameter $key
                 TTransaction::open(self::$database); // open a transaction
 
-                $object = new Perguntas($key); // instantiates the Active Record 
+                $object = new Pergunta($key); // instantiates the Active Record 
 
                 $this->form->setData($object); // fill the form 
 

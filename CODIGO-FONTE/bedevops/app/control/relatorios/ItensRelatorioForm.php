@@ -5,9 +5,9 @@ class ItensRelatorioForm extends TPage
     protected $form;
     private $formFields = [];
     private static $database = 'bedevops';
-    private static $activeRecord = 'ItensRelatorio';
+    private static $activeRecord = 'ItemRelatorio';
     private static $primaryKey = 'id';
-    private static $formName = 'form_ItensRelatorio';
+    private static $formName = 'form_ItemRelatorio';
 
     /**
      * Form constructor
@@ -23,7 +23,7 @@ class ItensRelatorioForm extends TPage
         $this->form->setFormTitle("Formulário de Perguntas");
 
         TTransaction::open('bedevops');
-        $data = Perguntas::orderBy('id')->load();
+        $data = Pergunta::orderBy('id')->load();
         TTransaction::close();
         foreach ($data as &$value) {
             $row = $this->form->addContent([new TFormSeparator("", '#333333', '18', '#a3a0a0')]);
@@ -76,8 +76,9 @@ class ItensRelatorioForm extends TPage
             $messageAction = null;
             $this->form->validate(); // validate form data
             TTransaction::open('bedevops');
-            $perguntas = Perguntas::orderBy('id')->load();
-            $lastrelatorio = Relatorios::last()->id;
+            $perguntas = Pergunta::orderBy('id')->load();
+            $lastrelatorio = Relatorio::last()->id;
+            $categorias = Categoria::orderBy('id')->load();
             TTransaction::close();
             foreach ($perguntas as &$pergunta) {
                 TTransaction::open(self::$database); // open a transaction
@@ -88,8 +89,7 @@ class ItensRelatorioForm extends TPage
                 TTransaction::setLogger(new TLoggerTXT('log.txt')); // file
                 **/
 
-            $object = new ItensRelatorio(); // create an empty object 
-
+            $object = new ItemRelatorio(); // create an empty object 
             $object->pergunta_id = $pergunta->id;
             $object->resposta = $param["resposta_$pergunta->id"];
             $object->comentario = $param["comentario_$pergunta->id"];
@@ -101,8 +101,34 @@ class ItensRelatorioForm extends TPage
             // get the generated {PRIMARY_KEY}
             $data->id = $object->id; 
 */
-            #$this->form->setData($data); // fill form data
-            TTransaction::close(); // close the transaction
+            TTransaction::close();
+            }
+            foreach ($categorias as &$categoria) {
+                TTransaction::open(self::$database); // open a transaction
+                $count = Pergunta::where('categoria_id', '=', $categoria->id)->count();
+                $equivalencia = 0;
+                foreach ($perguntas as &$pergunta) {
+                    if ($pergunta->categoria_id == $categoria->id && $param["resposta_$pergunta->id"] == 1 ) {
+                        $equivalencia++;
+                    }
+                }
+                $value = $equivalencia * 100 / $count;
+                /*
+                $result = new Resultados(); // create an empty object 
+                */
+                $result = new Resultado();
+                $result->categoria_id = $categoria->id;
+                $result->relatorio_id = $lastrelatorio;
+                $result->valor = $value;
+
+                $result->store(); // save the object 
+
+    /*
+                // get the generated {PRIMARY_KEY}
+                $data->id = $object->id; 
+    */
+                #$this->form->setData($data); // fill form data
+                TTransaction::close(); // close the transaction
             }
             /**
             // To define an action to be executed on the message close event:
@@ -111,6 +137,7 @@ class ItensRelatorioForm extends TPage
 
             new TMessage('info', "Registro salvo", $messageAction); 
 
+            TApplication::loadPage('ResultadosChart', 'onshow');
             exit;
                 TScript::create("Template.closeRightPanel();"); 
 
@@ -134,7 +161,7 @@ class ItensRelatorioForm extends TPage
                 $key = $param['key'];  // get the parameter $key
                 TTransaction::open(self::$database); // open a transaction
 
-                $object = new ItensRelatorio($key); // instantiates the Active Record 
+                $object = new ItemRelatorio($key); // instantiates the Active Record 
 
                 $this->form->setData($object); // fill the form 
 

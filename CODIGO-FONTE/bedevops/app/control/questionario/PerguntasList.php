@@ -8,9 +8,9 @@ class PerguntasList extends TPage
     private $loaded;
     private $filter_criteria;
     private static $database = 'bedevops';
-    private static $activeRecord = 'Perguntas';
+    private static $activeRecord = 'Pergunta';
     private static $primaryKey = 'id';
-    private static $formName = 'formList_Perguntas';
+    private static $formName = 'formList_Pergunta';
     private $showMethods = ['onReload', 'onSearch'];
 
     /**
@@ -29,8 +29,8 @@ class PerguntasList extends TPage
         $id = new TEntry('id');
         $pergunta = new TEntry('pergunta');
         $descricao = new TEntry('descricao');
-        $ferramenta_id = new TDBCombo('ferramenta_id', 'bedevops', 'Ferramentas', 'id', '{nome}','nome asc'  );
-        $categorias_id = new TDBCombo('categorias_id', 'bedevops', 'Categorias', 'id', '{categoria}','categoria asc'  );
+        $ferramenta_id = new TDBCombo('ferramenta_id', 'bedevops', 'Ferramenta', 'id', '{nome}','nome asc'  );
+        $categoria_id = new TDBCombo('categoria_id', 'bedevops', 'Categoria', 'id', '{categoria}','categoria asc'  );
 
         $pergunta->setMaxLength(200);
         $descricao->setMaxLength(300);
@@ -38,14 +38,14 @@ class PerguntasList extends TPage
         $id->setSize(100);
         $pergunta->setSize('100%');
         $descricao->setSize('100%');
+        $categoria_id->setSize('100%');
         $ferramenta_id->setSize('100%');
-        $categorias_id->setSize('100%');
 
         $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id]);
         $row2 = $this->form->addFields([new TLabel("Pergunta:", null, '14px', null)],[$pergunta]);
         $row3 = $this->form->addFields([new TLabel("Descrição:", null, '14px', null)],[$descricao]);
         $row4 = $this->form->addFields([new TLabel("Ferramenta:", null, '14px', null)],[$ferramenta_id]);
-        $row5 = $this->form->addFields([new TLabel("Categoria:", null, '14px', null)],[$categorias_id]);
+        $row5 = $this->form->addFields([new TLabel("Categoria:", null, '14px', null)],[$categoria_id]);
 
         // keep the form filled during navigation with session data
         $this->form->setData( TSession::getValue(__CLASS__.'_filter_data') );
@@ -70,7 +70,7 @@ class PerguntasList extends TPage
         $column_pergunta = new TDataGridColumn('pergunta', "Pergunta", 'left');
         $column_descricao = new TDataGridColumn('descricao', "Descrição", 'left');
         $column_ferramenta_nome = new TDataGridColumn('ferramenta->nome', "Ferramenta", 'left');
-        $column_categorias_categoria = new TDataGridColumn('categorias->categoria', "Categoria", 'left');
+        $column_categoria_categoria = new TDataGridColumn('categoria->categoria', "Categoria", 'left');
 
         $order_id = new TAction(array($this, 'onReload'));
         $order_id->setParameter('order', 'id');
@@ -80,7 +80,7 @@ class PerguntasList extends TPage
         $this->datagrid->addColumn($column_pergunta);
         $this->datagrid->addColumn($column_descricao);
         $this->datagrid->addColumn($column_ferramenta_nome);
-        $this->datagrid->addColumn($column_categorias_categoria);
+        $this->datagrid->addColumn($column_categoria_categoria);
 
         $action_onEdit = new TDataGridAction(array('PerguntasForm', 'onEdit'));
         $action_onEdit->setUseButton(false);
@@ -137,7 +137,7 @@ class PerguntasList extends TPage
                 TTransaction::open(self::$database);
 
                 // instantiates object
-                $object = new Perguntas($key, FALSE); 
+                $object = new Pergunta($key, FALSE); 
 
                 // deletes the object from the database
                 $object->delete();
@@ -265,10 +265,10 @@ class PerguntasList extends TPage
             $filters[] = new TFilter('ferramenta_id', '=', $data->ferramenta_id);// create the filter 
         }
 
-        if (isset($data->categorias_id) AND ( (is_scalar($data->categorias_id) AND $data->categorias_id !== '') OR (is_array($data->categorias_id) AND (!empty($data->categorias_id)) )) )
+        if (isset($data->categoria_id) AND ( (is_scalar($data->categoria_id) AND $data->categoria_id !== '') OR (is_array($data->categoria_id) AND (!empty($data->categoria_id)) )) )
         {
 
-            $filters[] = new TFilter('categorias_id', '=', $data->categorias_id);// create the filter 
+            $filters[] = new TFilter('categoria_id', '=', $data->categoria_id);// create the filter 
         }
 
         $param = array();
@@ -295,7 +295,7 @@ class PerguntasList extends TPage
             // open a transaction with database 'bedevops'
             TTransaction::open(self::$database);
 
-            // creates a repository for Perguntas
+            // creates a repository for Pergunta
             $repository = new TRepository(self::$activeRecord);
             $limit = 20;
 

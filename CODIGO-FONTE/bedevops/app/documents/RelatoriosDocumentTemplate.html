@@ -2,6 +2,60 @@
 <head>
 </head>
 <body>
-
+<table style="border-collapse: collapse; width: 100%;" border="1">
+<tbody>
+<tr>
+<td style="width: 20.227%;"><img src="app/images/icon.png" alt="" width="180" height="80" /></td>
+<td style="width: 40.6604%; text-align: center;"><strong><span style="font-size: 36pt;">BeDevOps</span></strong></td>
+<td style="width: 39.1125%;">
+<p style="margin: 1px 0;"><strong>Relatório de Automatização</strong></p>
+<p style="margin: 1px 0;"><strong>Título:</strong> {$titulo}</p>
+<p style="margin: 1px 0;"><strong>Criador: </strong>{$user->name}</p>
+<p style="margin: 1px 0;"><strong>Data da criação: </strong>{$criacao}</p>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li style="text-align: left;"><span style="font-size: 14pt;"><strong><em>Resultados</em></strong></span></li>
+</ul>
+<table class="mce-table" style="border-collapse: collapse; border: 1px solid #929292; height: 80px; width: 0px;" border="1" width="350px" cellspacing="0" cellpadding="3" data-detailmodel="Resultado.relatorio_id">
+<thead>
+<tr style="background-color: #96c0e6;">
+<th style="width: 106.083px;">Categoria</th>
+<th style="width: 51.3667px;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #f0f0f0;">
+<td style="width: 106.083px;">{$categoria->categoria}</td>
+<td style="width: 51.3667px;">{$valor}%</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<ul>
+<li style="text-align: left;"><span style="font-size: 14pt;"><strong><em>Direcionamentos</em></strong></span></li>
+</ul>
+<table class="mce-table" style="border-collapse: collapse; border: 1px solid #929292; height: 80px; width: 0px;" border="1" width="350px" cellspacing="0" cellpadding="3" data-detailmodel="ItemRelatorio.relatorio_id">
+<thead>
+<tr style="background-color: #96c0e6;">
+<th style="width: 160.8px;">Pergunta</th>
+<th style="width: 0px;">Categoria</th>
+<th style="width: 94.9167px;">Comentario</th>
+<th style="width: 230.033px;">Ferramenta</th>
+<th style="width: 253.483px;">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #f0f0f0;">
+<td style="width: 160.8px;">{$pergunta->pergunta}</td>
+<td style="width: 0px;">{$pergunta->categoria->categoria}</td>
+<td style="width: 94.9167px;">{$comentario}</td>
+<td style="width: 230.033px;">{$pergunta->ferramenta->nome}</td>
+<td style="width: 253.483px;">{$pergunta->ferramenta->descricao}</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
