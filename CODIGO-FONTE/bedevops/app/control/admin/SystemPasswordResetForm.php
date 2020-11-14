@@ -55,7 +55,7 @@ class SystemPasswordResetForm extends TPage
         $btn->style = 'height: 40px;width: 90%;display: block;margin: auto;font-size:17px;';
         
         $wrapper = new TElement('div');
-        $wrapper->style = 'margin:auto; margin-top:100px;max-width:460px;';
+        $wrapper->style = 'margin:50px; margin-top:30px;max-width:460px;';
         $wrapper->id    = 'login-wrapper';
         $wrapper->add($this->form);
         
@@ -127,6 +127,8 @@ class SystemPasswordResetForm extends TPage
                 }
             }
             TTransaction::close();
+            AdiantiCoreApplication::loadPage('LoginForm', '', null);
+
         }
         catch (Exception $e)
         {

@@ -37,11 +37,11 @@ class SystemRegistrationForm extends TPage
         $this->form->addAction( _t('Clear'), new TAction([$this, 'onClear']), 'fa:eraser red' );
         //$this->form->addActionLink( _t('Back'),  new TAction(['LoginForm','onReload']), 'far:arrow-alt-circle-left blue' );
         
-        $login->addValidation( _t('Login'), new TRequiredValidator);
+        $login->addValidation( 'Usuário', new TRequiredValidator);
         $name->addValidation( _t('Name'), new TRequiredValidator);
-        $email->addValidation( _t('Email'), new TRequiredValidator);
+        $email->addValidation( 'E-mail', new TRequiredValidator);
         $password->addValidation( _t('Password'), new TRequiredValidator);
-        $repassword->addValidation( _t('Password confirmation'), new TRequiredValidator);
+        $repassword->addValidation( 'Confirmar Senha', new TRequiredValidator);
         
         // define the sizes
         $name->setSize('100%');
@@ -50,15 +50,15 @@ class SystemRegistrationForm extends TPage
         $repassword->setSize('100%');
         $email->setSize('100%');
         
-        $this->form->addFields( [new TLabel(_t('Login'), 'red')],    [$login] );
-        $this->form->addFields( [new TLabel(_t('Name'), 'red')],     [$name] );
-        $this->form->addFields( [new TLabel(_t('Email'), 'red')],    [$email] );
-        $this->form->addFields( [new TLabel(_t('Password'), 'red')], [$password] );
-        $this->form->addFields( [new TLabel(_t('Password confirmation'), 'red')], [$repassword] );
+        $this->form->addFields( [new TLabel('Usuário', 'black')],    [$login] );
+        $this->form->addFields( [new TLabel(_t('Name'), 'black')],     [$name] );
+        $this->form->addFields( [new TLabel('E-mail', 'black')],    [$email] );
+        $this->form->addFields( [new TLabel(_t('Password'), 'black')], [$password] );
+        $this->form->addFields( [new TLabel('Confirmar Senha', 'black')], [$repassword] );
         
         // add the container to the page
         $wrapper = new TElement('div');
-        $wrapper->style = 'margin:auto; margin-top:100px;max-width:600px;';
+        $wrapper->style = 'margin:50px; margin-top:30px;max-width:500px;';
         $wrapper->id    = 'login-wrapper';
         $wrapper->add($this->form);
         
@@ -93,7 +93,7 @@ class SystemRegistrationForm extends TPage
             
             if( empty($param['login']) )
             {
-                throw new Exception(TAdiantiCoreTranslator::translate('The field ^1 is required', _t('Login')));
+                throw new Exception(TAdiantiCoreTranslator::translate('The field ^1 is required', 'Usuário'));
             }
             
             if( empty($param['name']) )
@@ -103,7 +103,7 @@ class SystemRegistrationForm extends TPage
             
             if( empty($param['email']) )
             {
-                throw new Exception(TAdiantiCoreTranslator::translate('The field ^1 is required', _t('Email')));
+                throw new Exception(TAdiantiCoreTranslator::translate('The field ^1 is required', 'E-mail'));
             }
             
             if( empty($param['password']) )
@@ -113,7 +113,7 @@ class SystemRegistrationForm extends TPage
             
             if( empty($param['repassword']) )
             {
-                throw new Exception(TAdiantiCoreTranslator::translate('The field ^1 is required', _t('Password confirmation')));
+                throw new Exception(TAdiantiCoreTranslator::translate('The field ^1 is required', _t('Confirmar Senha')));
             }
             
             if (SystemUsers::newFromLogin($param['login']) instanceof SystemUsers)
@@ -145,6 +145,7 @@ class SystemRegistrationForm extends TPage
             {
                 foreach( $default_groups as $group_id )
                 {
+                    print $group_id;
                     $object->addSystemUserGroup( new SystemGroup($group_id) );
                 }
             }
@@ -162,6 +163,7 @@ class SystemRegistrationForm extends TPage
             TTransaction::close(); // close the transaction
             $pos_action = new TAction(['LoginForm', 'onLoad']);
             new TMessage('info', _t('Account created'), $pos_action); // shows the success message
+            AdiantiCoreApplication::loadPage('LoginForm', '', null);
         }
         catch (Exception $e)
         {

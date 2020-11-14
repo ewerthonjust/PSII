@@ -20,7 +20,7 @@ class ItensRelatorioForm extends TPage
         // creates the form
         $this->form = new BootstrapFormBuilder(self::$formName);
         // define the form title
-        $this->form->setFormTitle("Formulário de Perguntas");
+        $this->form->setFormTitle("Formulário de perguntas");
 
         TTransaction::open('bedevops');
         $data = Pergunta::orderBy('id')->load();

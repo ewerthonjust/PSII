@@ -44,7 +44,7 @@ class SystemRequestPasswordResetForm extends TPage
         $btn->style = 'height: 40px;width: 90%;display: block;margin: auto;font-size:17px;';
         
         $wrapper = new TElement('div');
-        $wrapper->style = 'margin:auto; margin-top:100px;max-width:460px;';
+        $wrapper->style = 'margin:50px; margin-top:30px;max-width:460px;';
         $wrapper->id    = 'login-wrapper';
         $wrapper->add($this->form);
         
@@ -105,7 +105,8 @@ class SystemRequestPasswordResetForm extends TPage
                     $html->enableSection('main', $replaces);
                     
                     MailService::send( $user->email, _t('Password reset'), $html->getContents(), 'html' );
-                    new TMessage('info', _t('Message sent successfully'));
+                    new TMessage('info', 'Solicitação encaminhada com sucesso, por favor verifique seu e-mail!');
+                    AdiantiCoreApplication::loadPage('LoginForm', '', null);
                 }
             }
             else

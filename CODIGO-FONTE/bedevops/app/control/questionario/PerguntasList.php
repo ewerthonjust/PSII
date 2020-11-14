@@ -24,7 +24,7 @@ class PerguntasList extends TPage
         $this->form = new BootstrapFormBuilder(self::$formName);
 
         // define the form title
-        $this->form->setFormTitle("Listagem de perguntass");
+        $this->form->setFormTitle("Consulta de perguntas");
 
         $id = new TEntry('id');
         $pergunta = new TEntry('pergunta');
@@ -117,7 +117,7 @@ class PerguntasList extends TPage
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';
-        $container->add(TBreadCrumb::create(["Questionário","Consultar Perguntas"]));
+        $container->add(TBreadCrumb::create(["Questionário","Consulta de Perguntas"]));
         $container->add($this->form);
         $container->add($panel);
 

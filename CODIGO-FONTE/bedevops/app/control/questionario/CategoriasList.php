@@ -24,7 +24,7 @@ class CategoriasList extends TPage
         $this->form = new BootstrapFormBuilder(self::$formName);
 
         // define the form title
-        $this->form->setFormTitle("Listagem de categorias");
+        $this->form->setFormTitle("Consulta de categorias");
 
         $id = new TEntry('id');
         $categoria = new TEntry('categoria');
@@ -100,7 +100,7 @@ class CategoriasList extends TPage
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';
-        $container->add(TBreadCrumb::create(["Questionário","Consultar Categorias"]));
+        $container->add(TBreadCrumb::create(["Questionário","Consulta de Categorias"]));
         $container->add($this->form);
         $container->add($panel);
 

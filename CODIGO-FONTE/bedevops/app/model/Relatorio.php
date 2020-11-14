@@ -41,11 +41,11 @@ class Relatorio extends TRecord
      */
     public function get_user()
     {
-    
+        TTransaction::open('permission');
         // loads the associated object
         if (empty($this->user))
             $this->user = new SystemUsers($this->user_id);
-    
+        TTransaction::close();
         // returns the associated object
         return $this->user;
     }

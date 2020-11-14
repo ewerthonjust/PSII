@@ -24,7 +24,7 @@ class FerramentasList extends TPage
         $this->form = new BootstrapFormBuilder(self::$formName);
 
         // define the form title
-        $this->form->setFormTitle("Listagem de ferramentas");
+        $this->form->setFormTitle("Consulta de ferramentas");
 
         $id = new TEntry('id');
         $nome = new TEntry('nome');
@@ -107,7 +107,7 @@ class FerramentasList extends TPage
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';
-        $container->add(TBreadCrumb::create(["Ferramentas","Consultar Ferramentas"]));
+        $container->add(TBreadCrumb::create(["Ferramentas","Consulta de Ferramentas"]));
         $container->add($this->form);
         $container->add($panel);
 

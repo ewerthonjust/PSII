@@ -85,7 +85,7 @@ class LoginForm extends TPage
         $wrapper->id = 'login-wrapper';
         
         $h3 = new TElement('h1');
-        $h3->style = 'text-align:center; color:white; font-weight:bold;';
+        $h3->style = 'text-align:center;color:white;';
         $h3->add('BeDevOps');
         
         $wrapper->add($h3);
@@ -136,6 +136,8 @@ class LoginForm extends TPage
     public static function onLogin($param)
     {
         $QUERY_STRING_NOT_LOGGED = TSession::getValue('QUERY_STRING_NOT_LOGGED');
+        $pos1 = strpos($QUERY_STRING_NOT_LOGGED, 'Password');
+        $pos2 = strpos($QUERY_STRING_NOT_LOGGED, 'Registration');
         $ini  = AdiantiApplicationConfig::get();
         
         try
@@ -159,7 +161,7 @@ class LoginForm extends TPage
                 ApplicationAuthenticationService::setLang( $data->lang_id ?? null );
                 SystemAccessLogService::registerLogin();
                 
-                if($QUERY_STRING_NOT_LOGGED)
+                if($QUERY_STRING_NOT_LOGGED && $pos1 && $pos2)
                 {
                     TScript::create("location.href='index.php?{$QUERY_STRING_NOT_LOGGED}';");
                 }

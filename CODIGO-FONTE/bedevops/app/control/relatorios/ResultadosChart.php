@@ -21,16 +21,23 @@ class ResultadosChart extends TPage
         $this->form = new BootstrapFormBuilder(self::$formName);
 
         // define the form title
-        $this->form->setFormTitle("Consulta de Relatórios");
+        $this->form->setFormTitle("Consulta de relatórios");
 
-        $relatorio_id = new TDBCombo('relatorio_id', 'bedevops', 'Relatorio', 'id', '{titulo}','id asc'  );
+        $criteria_relatorio_id = new TCriteria();
+
+        $filterVar = TSession::getValue("userid");
+        $criteria_relatorio_id->add(new TFilter('user_id', '=', $filterVar)); 
+
+        $relatorio_id = new TDBCheckGroup('relatorio_id', 'bedevops', 'Relatorio', 'id', '{titulo}','id asc' , $criteria_relatorio_id );
         $categoria_id = new TDBCombo('categoria_id', 'bedevops', 'Categoria', 'id', '{categoria}','categoria asc'  );
 
-        $relatorio_id->enableSearch();
-        $relatorio_id->setSize('40%');
+        $relatorio_id->setBreakItems(2);
+        $relatorio_id->setLayout('horizontal');
+
+        $relatorio_id->setSize(600);
         $categoria_id->setSize('20%');
 
-        $row1 = $this->form->addFields([new TLabel("Título", null, '14px', null)],[$relatorio_id]);
+        $row1 = $this->form->addFields([new TLabel("Título:", null, '14px', null)],[$relatorio_id]);
         $row2 = $this->form->addFields([new TLabel("Categoria:", null, '14px', null)],[$categoria_id]);
 
         // keep the form filled during navigation with session data
@@ -48,7 +55,7 @@ class ResultadosChart extends TPage
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';
-        $container->add(TBreadCrumb::create(["Relatórios","Consulta"]));
+        $container->add(TBreadCrumb::create(["Relatórios","Consulta de Relatórios"]));
         $container->add($this->form);
 
         TButton::disableField(self::$formName, 'btn_onexport');
@@ -77,12 +84,17 @@ class ResultadosChart extends TPage
         {
             if (!empty($param['relatorio_id']))
             {
-
-                $pageParam = ['key' => $param['relatorio_id']]; // ex.: = ['key' => 10]
-                TApplication::loadPage('RelatoriosDocument', 'onGenerate', $pageParam);
+                if (count($param['relatorio_id']) == 1)
+                {
+                    $pageParam = ['key' => $param['relatorio_id']]; // ex.: = ['key' => 10]
+                    TApplication::loadPage('RelatoriosDocument', 'onGenerate', $pageParam);
+                }
+                else {
+                    throw new Exception('Selecione apenas 1 relatório!');
+                }
 
             } else {
-                new TMessage('info', "Você deve selecionar o relatório que você deseja exportar.");
+                new TMessage('info', "Selecione o relatório que você deseja exportar.");
             }
         }
         catch (Exception $e) 
@@ -100,18 +112,36 @@ class ResultadosChart extends TPage
         $data = $this->form->getData();
         $filters = [];
 
+        if (count($data->relatorio_id) == 0)
+        {   
+            TTransaction::open('bedevops');
+            $conn = TTransaction::get();
+            $result = $conn->query('SELECT * FROM relatorio WHERE user_id = '.TSession::getValue("userid").' ORDER BY id DESC LIMIT 4');
+            $objects = $result->fetchAll(PDO::FETCH_CLASS, "stdClass");
+            foreach ($objects as $value) {
+                array_push($data->relatorio_id,$value->id);
+            }
+            TTransaction::close();
+        } 
+
         TSession::setValue(__CLASS__.'_filter_data', NULL);
         TSession::setValue(__CLASS__.'_filters', NULL);
 
-        if (isset($data->relatorio_id) AND ( (is_scalar($data->relatorio_id) AND $data->relatorio_id !== '') OR (is_array($data->relatorio_id) AND (!empty($data->relatorio_id)) )) )
-        {
-
-            $filters[] = new TFilter('relatorio_id', '=', $data->relatorio_id);// create the filter 
-        }
         if (isset($data->categoria_id) AND ( (is_scalar($data->categoria_id) AND $data->categoria_id !== '') OR (is_array($data->categoria_id) AND (!empty($data->categoria_id)) )) )
         {
 
             $filters[] = new TFilter('categoria_id', '=', $data->categoria_id);// create the filter 
+        }
+
+        if (count($data->relatorio_id) <= 4)
+        {
+            if (isset($data->relatorio_id) AND ( (is_scalar($data->relatorio_id) AND $data->relatorio_id !== '') OR (is_array($data->relatorio_id) AND (!empty($data->relatorio_id)) )) )
+            {
+
+                $filters[] = new TFilter('relatorio_id', 'in', $data->relatorio_id);// create the filter 
+            }
+        } else {
+                throw new Exception('Selecione no máximo 4 relatórios!');
         }
 
         // fill the form with data again
@@ -190,7 +220,7 @@ class ResultadosChart extends TPage
                 $chart = new THtmlRenderer('app/resources/c3_bar_chart.html');
                 $chart->enableSection('main', [
                     'data'=> json_encode($data),
-                    'height' => 300,
+                    'height' => 500,
                     'precision' => 0,
                     'decimalSeparator' => ',',
                     'thousandSeparator' => '.',
@@ -227,7 +257,9 @@ class ResultadosChart extends TPage
     {
 
         TTransaction::open('bedevops');
-        $count = Relatorio::where('id',  'is not', null)->count();
+        $count = Relatorio::where('id',  'is not', null)
+                                ->where('user_id', '=', TSession::getValue("userid"))
+                                    ->count();
         if ($count > 0) {
             // Código gerado pelo snippet: "Enviar dados para campo"
             $object = new stdClass();
@@ -238,7 +270,7 @@ class ResultadosChart extends TPage
             TButton::enableField(self::$formName, 'Exportar Relatório');
         } else {
 
-            new TMessage('info', "Você foi redirecionado para a página de cadastro de relatórios por não existir nenhum relatório cadastrado.", $this->onAction());
+            new TMessage('info', "Você foi redirecionado para a página de cadastro de relatórios, pois você ainda não tem nenhum relatório cadastrado.", $this->onAction());
 
         }
         TTransaction::close();

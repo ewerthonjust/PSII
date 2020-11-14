@@ -20,36 +20,34 @@ class RelatoriosForm extends TPage
         // creates the form
         $this->form = new BootstrapFormBuilder(self::$formName);
         // define the form title
-        $this->form->setFormTitle("Cadastro de relatorios");
+        $this->form->setFormTitle("Cadastro de relatórios");
 
 
         $id = new TEntry('id');
-        $user_id = new TDBCombo('user_id', 'bedevops', 'SystemUsers', 'id', '{name}','name asc'  );
+        $user_id = new TDBCombo('user_id', 'permission', 'SystemUsers', 'id', '{name}','name asc'  );
         $titulo = new TEntry('titulo');
-        $descricao = new TEntry('descricao');
+        $descricao = new TText('descricao');
         $criacao = new TDateTime('criacao');
 
-        $user_id->addValidation("Usuário", new TRequiredValidator()); 
         $titulo->addValidation("Título", new TRequiredValidator()); 
         $descricao->addValidation("Descrição", new TRequiredValidator()); 
         $criacao->addValidation("Data da criação", new TRequiredValidator()); 
 
-        $user_id->setDefaultOption(false);
+        $titulo->setMaxLength(100);
         $criacao->setMask('dd/mm/yyyy hh:ii');
         $criacao->setDatabaseMask('yyyy-mm-dd hh:ii');
-
-        $titulo->setMaxLength(100);
-        $descricao->setMaxLength(200);
-
         $id->setEditable(false);
         $user_id->setEditable(false);
         $criacao->setEditable(false);
 
+        $titulo->placeholder = "(Ex.: \"Workshop_devops_2020\", \"Test_%user%_112020\")\"";
+        $descricao->placeholder = "(Ex.: Relatório gerado durante apresentação do dia....\")";
+
         $id->setSize(100);
         $criacao->setSize(150);
-        $user_id->setSize('60%');
+        $user_id->setSize('25%');
         $titulo->setSize('100%');
-        $descricao->setSize('100%');
+        $descricao->setSize('100%', 70);
 
         TTransaction::open('permission');
         $user = new SystemUsers(TSession::getValue('userid'));
@@ -62,10 +60,9 @@ class RelatoriosForm extends TPage
         $object = new stdClass();
         $object->criacao = date("d-m-Y H:i");
         TForm::sendData(self::$formName, $object);
-
-        $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id,new TLabel("Usuário:", '#000000', '14px', null),$user_id]);
-        $row2 = $this->form->addFields([new TLabel("Título: *", '#000000', '14px', null)],[$titulo]);
-        $row3 = $this->form->addFields([new TLabel("Descrição: *", '#000000', '14px', null)],[$descricao]);
+        $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id,new TLabel("Usuário:", null, '14px', null),$user_id]);
+        $row2 = $this->form->addFields([new TLabel("Título:", '#000000', '14px', null)],[$titulo]);
+        $row3 = $this->form->addFields([new TLabel("Descrição:", '#000000', '14px', null)],[$descricao]);
         $row4 = $this->form->addFields([new TLabel("Data da criação:", '#000000', '14px', null)],[$criacao]);
 
         // create the form actions
@@ -78,7 +75,7 @@ class RelatoriosForm extends TPage
         $container = new TVBox;
         $container->style = 'width: 100%';
         $container->class = 'form-container';
-        $container->add(TBreadCrumb::create(["Relatórios","Cadastro de relatorios"]));
+        $container->add(TBreadCrumb::create(["Relatórios","Cadastro de relatórios"]));
         $container->add($this->form);
 
         parent::add($container);
@@ -118,18 +115,18 @@ class RelatoriosForm extends TPage
             // To define an action to be executed on the message close event:
             $messageAction = new TAction(['className', 'methodName']);
             **/
-/*
+            /*
 
             new TMessage('info', "Registro salvo", $messageAction); 
 
-*/
+            */
+
             $pageParam = ['ReportId' => $data->id]; // ex.: = ['key' => 10]
             TApplication::loadPage('ItensRelatorioForm', 'onshow', $pageParam);
-
         }
         catch (Exception $e) // in case of exception
         {
-            //</catchAutoCode> 
+            //</catchAutoCode>  
 
             new TMessage('error', $e->getMessage()); // shows the exception error message
             $this->form->setData( $this->form->getData() ); // keep form data

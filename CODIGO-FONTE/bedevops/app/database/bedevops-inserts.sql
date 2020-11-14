@@ -4,196 +4,80 @@ INSERT INTO categoria (id,categoria) VALUES (2,'Deployment');
 
 INSERT INTO categoria (id,categoria) VALUES (3,'Operation'); 
 
-INSERT INTO ferramenta (id,nome,descricao) VALUES (1,'Rundeck','Ferramenta para automatização de Deployments'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (1,'Ansible','Ansible é uma ferramenta de TI de código aberto para gerenciar, automatizar, configurar servidores e, implantar aplicativos, a partir de uma localização central.'); 
 
-INSERT INTO ferramenta (id,nome,descricao) VALUES (2,'Jenkins','Ferramenta para automatização de Builds'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (2,'AWS','AWS é uma plataforma de serviços de computação em nuvem oferecida pela Amazon.'); 
 
-INSERT INTO ferramenta (id,nome,descricao) VALUES (3,'Ansible','Framework em YAML para automatização de processos'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (3,'Confluence','Confluence é uma wiki corporativa baseada em web onde conhecimento e colaboração de uma equipe pode ser centralizada.'); 
 
-INSERT INTO ferramenta (id,nome,descricao) VALUES (4,'Puppet','Ferramenta para automatização da gestão de configuração'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (4,'Docker','Docker é um conjunto de produtos de plataforma como serviço que usam virtualização de nível de sistema operacional para entregar software em pacotes chamados contêineres.'); 
 
-INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (1,'São realizados deployments por meio de uma interface gráfica com procedimentos padronizados?','',1,2); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (5,'ELK','O ELK Stack é uma coleção de três produtos de código aberto - Elasticsearch, Logstash e Kibana, onde E significa ElasticSearch: usado para armazenar logs, L significa LogStash: usado para envio, bem como processamento e armazenamento de logs e K significa Kibana: é uma ferramenta de visualização (uma interface web) que é hospedada através do Nginx ou Apache.'); 
 
-INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (2,'São realizados builds regulares por meio de uma interface gráfica?','',2,1); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (6,'GitLab','O GitLab é um gerenciador de repositório de software baseado em git, com suporte a Wiki, gerenciamento de tarefas e CI/CD.'); 
 
-INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (3,'São utilizadas ferramentas para padronização de processos via script?','',3,3); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (7,'Gradle','Gradle é um sistema de automação de compilação open source que se baseia nos conceitos de Apache Ant e Apache Maven e introduz uma linguagem de domínio específico baseada em Groovy em vez do XML usado pelo Apache Maven para declarar a configuração do projeto.'); 
 
-INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (4,'A gestão da configuração é realizada de uma forma automatizada?','',4,3); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (8,'Grafana','Grafana é uma aplicação web de análise de código aberto multiplataforma e visualização interativa da web. Ele fornece tabelas, gráficos e alertas para a Web quando conectado a fontes de dados suportadas.'); 
 
-INSERT INTO system_group (id,name) VALUES (1,'Admin'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (9,'Jenkins','Jenkins é um servidor de automação gratuito e de código aberto. Ele ajuda a automatizar as partes do desenvolvimento de software relacionadas à construção, teste e implantação, facilitando a integração e entrega contínuas.'); 
 
-INSERT INTO system_group (id,name) VALUES (2,'Standard'); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (10,'Jira','Jira é um software comercial que permite o monitoramento de tarefas e acompanhamento de projetos garantindo o gerenciamento de todas as suas atividades em único lugar.'); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (1,1,1); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (11,'Nagios','Nagios é uma popular aplicação de monitoramento de rede de código aberto distribuída sob a licença GPL. Ele pode monitorar tanto hosts quanto serviços, alertando quando ocorrerem problemas e também quando os problemas são resolvidos.'); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (2,1,2); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (12,'Nexus','Nexus é um repositório de código aberto que oferece suporte a muitos formatos de artefatos, incluindo Docker, Java e npm. Com a integração da ferramenta Nexus, as pipelines em seu conjunto de ferramentas podem publicar e recuperar aplicativos com versão e suas dependências usando repositórios centrais que podem ser acessados em outros ambientes.'); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (3,1,3); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (13,'Rundeck','Rundeck é uma automação de runbook para gerenciamento de incidentes, continuidade de negócios e operações de autoatendimento.'); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (4,1,4); 
+INSERT INTO ferramenta (id,nome,descricao) VALUES (14,'Slack','Slack é uma plataforma proprietária de comunicação comercial que oferece muitos recursos no estilo IRC, incluindo salas de bate-papo persistentes organizadas por tópico, grupos privados e mensagens diretas.'); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (5,1,5); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (1,'As documentações do projeto estão acessíveis a qualquer membro da equipe de forma transparente e colaborativa?','Colaboração entre os membros da equipe para que possam compartilhar conhecimento e experiências.',3,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (6,1,6); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (2,'Uma documentação detalhada sobre os artefatos entregues e seu uso durante o CI/CD e processos de implantação (instalação, execução, atualização, downgrade, migração) é fornecida?','Balanceamento do nível de compreensão técnica da equipe de toda a cadeia de entrega.',3,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (7,1,8); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (3,'Uma ilustração mostrando as dependências de todos os componentes é fornecida?','Balanceamento do nível de compreensão de dependências do negocio.',3,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (8,1,9); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (4,'Os artefatos de software da aplicação são entregues como pacotes com base em um formato de embalagem padrão (como .rpm ou contêiner)?','Restabelecimento de um serviço em um curto espaço de tempo.',4,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (9,1,11); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (5,'O código-fonte é centralizado em repositórios, versionado e compartilhado?','Colaboração entre membros das equipes e versionamento de arquivos.',6,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (10,1,14); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (6,'Todos os artefatos de software e configurações fornecidos são versionados?','Garantir a rastreabilidade das mudanças; evitar mudanças, que contornam a rastreabilidade e o controle de versão; reestabelecimento de serviços.',6,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (11,1,15); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (7,'As rotinas de build são padronizadas e automatizadas?','Agilizar o fornecimento de pacotes e garantir a integridade das entregas.',7,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (12,2,10); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (8,'Existem rotinas de build programadas para fornecer os pacotes para a entrega contínua?','Garantir a entrega; agilizar o fornecimento de pacotes e automatização de entregas.',9,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (13,2,12); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (9,'O processo de integração contínua usado é capaz de disponibilizar pelo menos uma versão por dia?','Garantir a entrega; agilizar o fornecimento de pacotes e automatização de entregas.',9,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (14,2,13); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (10,'A gestão de demandas, alterações e ciclos de vida de projetos e aplicações são feitas de forma transparente e compartilhada?','Garantir a centralização de informações e agilizar os ciclos de entrega de correção e funcionalidades.',10,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (15,2,16); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (11,'Os artefatos são fornecidos em um repositório de artefatos no servidor de entrega? ','Garantir a entrega; Alta disponibilidade de dependências; Agilidade no fornecimento de pacotes e automatização de entregas.',12,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (16,2,17); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (12,'A comunicação da equipe é colaborativa e integrada com toda a cadeia de entrega?','Compartilhamento de informações.',14,1); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (17,2,18); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (13,'O desenvolvimento automatizado e baseado em modelo e gerenciamento de configuração do sistema são controlados com a ajuda de uma rotina de implantação?','Controle de mudanças; automatização da gestão de implantação de configurações.',1,2); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (18,2,19); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (14,'O processo de implantação é feito automaticamente sem nenhuma configuração manual?','Controle de mudanças; automatização da gestão de implantação de configurações.',1,2); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (19,2,20); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (15,'A rotina de implantação do sistema é instalada automaticamente e de forma padronizada a partir do arquivo de entrega provisionado?','Garantir a entrega; Alta disponibilidade de dependências; Agilidade no fornecimento de pacotes e automatização de entregas.',13,2); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (20,1,21); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (16,'A implantação de novas releases e feita forma automatizada ou por meio de interface gráfica?','Continuous Delivery.',13,2); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (21,2,22); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (17,'A gestão da alteração de configurações é realizada de uma forma automatizada?','Controle de mudanças; automatização da gestão de implantação de configurações.',1,3); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (22,2,23); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (18,'O provisionamento da infraestrutura é tratada como serviço?','Escalabilidade.',2,3); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (23,2,24); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (19,'A rotina de manutenção reage automaticamente na orquestração da nuvem e do sistema para lidar adequadamente com a reconfiguração necessária?','Restabelecimento de um serviço em um curto espaço de tempo.',4,3); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (24,2,25); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (20,'A analise de logs é feita por meio de interface gráfica com métricas pré-definidas?','Agilidade na analise para a solução de problemas.',5,3); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (25,1,26); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (21,'É possível controlar registro de logs por meio de interface gráfica?','Compartilhamento de informações para analise em time em possíveis problemas.',5,3); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (26,1,27); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (22,'O nível de log do sistema é configurável?','Agilidade na alteração do modo de analise de logs.',5,3); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (27,1,28); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (23,'É possível medir a disponibilidade de serviços e componentes?','Identificação de utilização de recursos para mensuração de escalabilidade.',8,3); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (28,1,29); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (24,'As mensagens de erro do sistema são classificadas por tipo e categorizadas em classes de alarme e gravidade?','Identificação de indisponibilidades; Transparência em priorização de ações.',11,3); 
 
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (29,2,30); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (30,1,31); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (31,1,32); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (32,1,33); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (33,1,34); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (34,1,35); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (35,1,36); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (36,1,37); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (37,1,38); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (38,1,39); 
-
-INSERT INTO system_group_program (id,system_group_id,system_program_id) VALUES (39,1,40); 
-
-INSERT INTO system_program (id,name,controller) VALUES (1,'System Group Form','SystemGroupForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (2,'System Group List','SystemGroupList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (3,'System Program Form','SystemProgramForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (4,'System Program List','SystemProgramList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (5,'System User Form','SystemUserForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (6,'System User List','SystemUserList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (7,'Common Page','CommonPage'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (8,'System PHP Info','SystemPHPInfoView'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (9,'System ChangeLog View','SystemChangeLogView'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (10,'Welcome View','WelcomeView'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (11,'System Sql Log','SystemSqlLogList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (12,'System Profile View','SystemProfileView'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (13,'System Profile Form','SystemProfileForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (14,'System SQL Panel','SystemSQLPanel'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (15,'System Access Log','SystemAccessLogList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (16,'System Message Form','SystemMessageForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (17,'System Message List','SystemMessageList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (18,'System Message Form View','SystemMessageFormView'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (19,'System Notification List','SystemNotificationList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (20,'System Notification Form View','SystemNotificationFormView'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (21,'System Document Category List','SystemDocumentCategoryFormList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (22,'System Document Form','SystemDocumentForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (23,'System Document Upload Form','SystemDocumentUploadForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (24,'System Document List','SystemDocumentList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (25,'System Shared Document List','SystemSharedDocumentList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (26,'System Unit Form','SystemUnitForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (27,'System Unit List','SystemUnitList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (28,'System Access stats','SystemAccessLogStats'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (29,'System Preference form','SystemPreferenceForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (30,'System Support form','SystemSupportForm'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (31,'System PHP Error','SystemPHPErrorLogView'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (32,'System Database Browser','SystemDatabaseExplorer'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (33,'System Table List','SystemTableList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (34,'System Data Browser','SystemDataBrowser'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (35,'System Menu Editor','SystemMenuEditor'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (36,'System Request Log','SystemRequestLogList'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (37,'System Request Log View','SystemRequestLogView'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (38,'System Administration Dashboard','SystemAdministrationDashboard'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (39,'System Log Dashboard','SystemLogDashboard'); 
-
-INSERT INTO system_program (id,name,controller) VALUES (40,'System Session dump','SystemSessionDumpView'); 
-
-INSERT INTO system_unit (id,name,connection_name) VALUES (1,'Matriz','matriz'); 
-
-INSERT INTO system_user_group (id,system_user_id,system_group_id) VALUES (1,1,1); 
-
-INSERT INTO system_user_group (id,system_user_id,system_group_id) VALUES (2,2,2); 
-
-INSERT INTO system_user_group (id,system_user_id,system_group_id) VALUES (3,1,2); 
-
-INSERT INTO system_user_program (id,system_user_id,system_program_id) VALUES (1,2,7); 
-
-INSERT INTO system_users (id,name,login,password,phone,email,frontpage_id,system_unit_id,active) VALUES (1,'Administrator','admin','21232f297a57a5a743894a0e4a801fc3',null,'admin@admin.net',10,NULL,'Y'); 
-
-INSERT INTO system_users (id,name,login,password,phone,email,frontpage_id,system_unit_id,active) VALUES (2,'User','user','ee11cbb19052e40b07aac0ca060c23ee',null,'user@user.net',7,NULL,'Y'); 
-
-INSERT INTO system_user_unit (id,system_user_id,system_unit_id) VALUES (1,1,1); 
+INSERT INTO pergunta (id,pergunta,descricao,ferramenta_id,categoria_id) VALUES (25,'A disponibilidade dos serviços e componentes de negócios definidos é monitorada continuamente?','Identificação de indisponibilidades.',11,3); 
