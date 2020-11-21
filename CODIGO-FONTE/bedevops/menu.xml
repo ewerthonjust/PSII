@@ -3,7 +3,7 @@
   <menuitem label="Relatórios">
     <icon>fas:chart-bar fa-fw </icon>
     <menu>
-      <menuitem label="Consulta de Relatórios">
+      <menuitem label="Consultar Relatórios">
         <icon>fas:search fa-fw </icon>
         <action>ResultadosChart#method=onShow</action>
       </menuitem>
@@ -12,7 +12,7 @@
   <menuitem label="Ferramentas">
     <icon>fas:wrench fa-fw </icon>
     <menu>
-      <menuitem label="Consulta de Ferramentas">
+      <menuitem label="Consultar Ferramentas">
         <icon>fas:search fa-fw </icon>
         <action>FerramentasList#method=onShow</action>
       </menuitem>
@@ -21,11 +21,11 @@
   <menuitem label="Questionário">
     <icon>fas:table fa-fw </icon>
     <menu>
-      <menuitem label="Consulta de Categorias">
+      <menuitem label="Consultar Categorias">
         <icon>fas:search fa-fw </icon>
         <action>CategoriasList#method=onShow</action>
       </menuitem>
-      <menuitem label="Consulta de Perguntas">
+      <menuitem label="Consultar Perguntas">
         <icon>fas:search fa-fw </icon>
         <action>PerguntasList#method=onShow</action>
       </menuitem>

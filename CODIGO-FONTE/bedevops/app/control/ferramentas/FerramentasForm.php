@@ -33,7 +33,7 @@ class FerramentasForm extends TPage
         $id->setEditable(false);
 
         $nome->setMaxLength(50);
-        $descricao->setMaxLength(300);
+        $descricao->setMaxLength(500);
 
         $id->setSize(100);
         $nome->setSize('100%');

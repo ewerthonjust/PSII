@@ -34,8 +34,8 @@ class RelatoriosForm extends TPage
         $criacao->addValidation("Data da criação", new TRequiredValidator()); 
 
         $titulo->setMaxLength(100);
-        $criacao->setMask('dd/mm/yyyy hh:ii');
-        $criacao->setDatabaseMask('yyyy-mm-dd hh:ii');
+        $criacao->setMask('dd/mm/yyyy hh:ii:ss');
+        $criacao->setDatabaseMask('yyyy-mm-dd hh:ii:ss');
         $id->setEditable(false);
         $user_id->setEditable(false);
         $criacao->setEditable(false);
@@ -58,7 +58,7 @@ class RelatoriosForm extends TPage
         TForm::sendData(self::$formName, $object);
 
         $object = new stdClass();
-        $object->criacao = date("d-m-Y H:i");
+        $object->criacao = date("d/m/Y h:i:s");
         TForm::sendData(self::$formName, $object);
         $row1 = $this->form->addFields([new TLabel("Código:", null, '14px', null)],[$id,new TLabel("Usuário:", null, '14px', null),$user_id]);
         $row2 = $this->form->addFields([new TLabel("Título:", '#000000', '14px', null)],[$titulo]);
@@ -102,6 +102,7 @@ class RelatoriosForm extends TPage
 
             $data = $this->form->getData(); // get form data as array
             $object->fromArray( (array) $data); // load the object with data
+            $object->criacao = date('Y-m-d h:i:s', strtotime($object->criacao));
 
             $object->store(); // save the object 
 

@@ -114,7 +114,7 @@ Monografia
 Problemas enfrentados:
      - Funcionalidade de auto cadastramento ainda sem solução. - Chamado aberto no AdianteiBuilder ainda sem feedback.
 
-2020-11-06- aula13 Avaliacao2
+2020-11-13- aula13 Avaliacao2
 Desenvolvimento da Ferramenta:
      - Recriação de TODO o projeto do 0 no Adianti Builder pois os problemas enfrentados com a tela de login não pderam ser solucionados, pois nem a equipe do  Adianti Builder pode me auxiliar.
      - Desenvolvimento da tela de auto cadastramento;

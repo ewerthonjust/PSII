@@ -11,9 +11,10 @@ class RelatoriosDocument extends TPage
      * Form constructor
      * @param $param Request
      */
+    
     public function __construct( $param )
     {
-
+       parent::__construct(); 
     }
 
     public static function onGenerate($param)
@@ -37,9 +38,12 @@ class RelatoriosDocument extends TPage
                      ->where('resposta', '=', '2')->load();
             $html->setDetail('ItemRelatorio.relatorio_id', $objectsItemRelatorio_relatorio_id);
 
-            $html->process();
+	    $html->process();
 
-            $document = 'tmp/'.uniqid().'.pdf'; 
+	    $name = Relatorio::find($param['key']);
+            $name = $name->titulo;
+
+	    $document = 'tmp/'.$name.'.pdf'; 
             $html->saveAsPDF($document, 'A4', 'portrait');
 
             TTransaction::close();

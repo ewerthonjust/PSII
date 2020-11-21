@@ -65,6 +65,8 @@ class ItensRelatorioForm extends TPage
 
         $this->form->addHeaderWidget($btnClose);
 
+        #$btnClose = $this->form->addAction(new TAction([$this, 'onClose']));
+
         parent::add($this->form);
 
     }
@@ -193,6 +195,13 @@ class ItensRelatorioForm extends TPage
     {
 
     } 
+
+    public function onClose($param = null) 
+    {
+        TTransaction::open('bedevops');
+        Relatorio::last()->delete();
+        TTransaction::close();
+    }
 
 }
 

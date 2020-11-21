@@ -25,24 +25,24 @@ class DashboardChart extends TPage
 
         $titulo = new TEntry('titulo');
         $autor = new TEntry('autor');
-        $data = new TEntry('data');
+        $criacao = new TEntry('criacao');
         $descricao = new TText('descricao');
 
         $titulo->setMaxLength(200);
 
-        $data->setSize('40%');
         $autor->setSize('40%');
         $titulo->setSize('40%');
+        $criacao->setSize('40%');
         $descricao->setSize('40%', 70);
 
-        $data->setEditable(false);
         $autor->setEditable(false);
         $titulo->setEditable(false);
+        $criacao->setEditable(false);
         $descricao->setEditable(false);
 
         $row1 = $this->form->addFields([new TLabel("Título:", null, '14px', null)],[$titulo]);
         $row2 = $this->form->addFields([new TLabel("Autor:", null, '14px', null)],[$autor]);
-        $row3 = $this->form->addFields([new TLabel("Data da criação:", null, '14px', null)],[$data]);
+        $row3 = $this->form->addFields([new TLabel("Data da criação:", null, '14px', null)],[$criacao]);
         $row4 = $this->form->addFields([new TLabel("Descrição:", null, '14px', null)],[$descricao]);
 
         // keep the form filled during navigation with session data
@@ -198,7 +198,7 @@ public function busca()
             $object = new stdClass();
             $object->titulo = Relatorio::last()->titulo;
             $object->autor = Relatorio::last()->user->name;
-            $object->data = Relatorio::last()->criacao;
+            $object->criacao = Relatorio::last()->criacao;
             $object->descricao = Relatorio::last()->descricao;
             //$object->fieldName = 'insira o novo valor aqui'; //sample
             TForm::sendData(self::$formName, $object);

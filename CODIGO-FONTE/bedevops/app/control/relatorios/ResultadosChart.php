@@ -25,8 +25,26 @@ class ResultadosChart extends TPage
 
         $criteria_relatorio_id = new TCriteria();
 
-        $filterVar = TSession::getValue("userid");
-        $criteria_relatorio_id->add(new TFilter('user_id', '=', $filterVar)); 
+	TTransaction::open('permission');
+        $conn = TTransaction::get();
+        $result = $conn->query('SELECT * FROM system_user_group WHERE system_user_id = '.TSession::getValue("userid").' and system_group_id = (SELECT ID FROM system_group WHERE name = \'Managers\')');
+        $objects = $result->fetchAll(PDO::FETCH_CLASS, "stdClass");
+        if (count($objects) > 0) {
+            $filterVar = null;
+            $result = $conn->query('SELECT * FROM system_users WHERE system_unit_id = (SELECT system_unit_id FROM system_users WHERE id = '.TSession::getValue("userid").')');
+            $system_users = $result->fetchAll(PDO::FETCH_CLASS, "stdClass");
+            foreach ($system_users as $user) {
+                if ($filterVar != null) {
+                    $filterVar = $filterVar.',';
+                }
+                $filterVar = $filterVar.$user->id;
+            }
+            $criteria_relatorio_id->add(new TFilter('id', 'in', "(SELECT id FROM relatorio WHERE user_id in ($filterVar))"));
+        } else {
+            $filterVar = TSession::getValue("userid");
+            $criteria_relatorio_id->add(new TFilter('user_id', '=', $filterVar));
+        }
+        TTransaction::close();
 
         $relatorio_id = new TDBCheckGroup('relatorio_id', 'bedevops', 'Relatorio', 'id', '{titulo}','id asc' , $criteria_relatorio_id );
         $categoria_id = new TDBCombo('categoria_id', 'bedevops', 'Categoria', 'id', '{categoria}','categoria asc'  );
@@ -225,12 +243,12 @@ class ResultadosChart extends TPage
                     'decimalSeparator' => ',',
                     'thousandSeparator' => '.',
                     'prefix' => '',
-                    'sufix' => '',
+                    'sufix' => '%',
                     'width' => 100,
                     'widthType' => '%',
                     'title' => 'Resultado',
                     'showLegend' => 'true',
-                    'showPercentage' => 'false',
+                    'showPercentage' => 'true',
                     'barDirection' => 'false'
                 ]);
 
