@@ -1,7 +1,0 @@
-SILVA, Rachel R. da. O crescimento de devops no mercado de tecnologia da informação. 2016. 47 f. Trabalho de Conclusão de Curso (Pós-Graduação em Gestão da Tecnologia da Informação e da Comunicação) - Curso de em Gestão da Tecnologia da Informação e da Comunicação, Universidade Candido Mendes, Rio de Janeiro.
-
-CORREA, Rodolfo O. OS DESAFIOS NA ADOÇÃO DE DEVOPSEM EMPRESA BRASILEIRA DE TECNOLOGIA DA INFORMAÇÃO NO SETOR BANCÁRIO. 2017. 102 f. Trabalho de conclusão de curso - Curso de Especialização em Gestão de Tecnologia da Informação, Instituto Federal de Educação, Ciência e Tecnologia de São Paulo, São Paulo.
-
-RIBEIRO, Gabriel D. Automação de testes aplicados ao DevOps. 2019. 61 f. Trabalho de conclusão de curso - Bacharel em Sistemas de Informação, Faculdade de Computação da Universidade Federal de Uberlândia, Minas Gerais.
-
-AMAZON. O que é DevOps? [S.l.], 2020. Disponível em: https://aws.amazon.com/pt/devops/what-is-devops/. Acesso em: 10 nov. 2020.
